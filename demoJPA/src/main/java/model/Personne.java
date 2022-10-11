@@ -1,6 +1,8 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -42,6 +44,8 @@ public class Personne {
 	private transient String attributJava;
 	
 	private transient Ordinateur ordi;
+	
+	private transient List<Matiere> modules=new ArrayList();
 	
 	@Embedded
 	private Adresse adresse;
@@ -145,6 +149,16 @@ public class Personne {
 
 	public void setOrdi(Ordinateur ordi) {
 		this.ordi = ordi;
+	}
+	
+	
+
+	public List<Matiere> getModules() {
+		return modules;
+	}
+
+	public void setModules(List<Matiere> modules) {
+		this.modules = modules;
 	}
 
 	@Override
