@@ -6,17 +6,30 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import model.Adresse;
+import model.Civilite;
+import model.Ordinateur;
 import model.Personne;
 
 public class Test {
 
 	public static void main(String[] args) {
 		
+		Adresse a1 = new Adresse("6", "rue rougemont");
+		
+		Personne p1 = new Personne("Jordan",LocalDate.parse("1993-05-01"),true,1500.005,Civilite.homme);
+		
+		Personne p2 = new Personne("Abid","Jeremy",LocalDate.parse("1997-05-14"),false,0.0,Civilite.nb);
+		
+		p1.setAdresse(a1);
+		p2.setAdresse(a1);
 		
 		
-		Personne p1 = new Personne("Abid","Jordan",LocalDate.parse("1993-05-01"),true,null);
+		Ordinateur o1 = new Ordinateur("Mac");
+		Ordinateur o2 = new Ordinateur("Asus");
 		
-		Personne p2 = new Personne("Abid","Jeremy",LocalDate.parse("1997-05-14"),false,null);
+		
+	
 		
 		
 		//Creation de la connexion à la BDD avec la persistence-unit sopraJPA (ligne 7 persistence.xml)
@@ -35,8 +48,15 @@ public class Test {
 		//insert p2
 		em.persist(p2);
 		
+		em.persist(o1);
+		em.persist(o2);
+		
 		em.getTransaction().commit();
 		
+		
+		
+		System.out.println(em.find(Personne.class, 1));
+		System.out.println(em.find(Personne.class, 2));
 		em.close();
 		emf.close();
 	
