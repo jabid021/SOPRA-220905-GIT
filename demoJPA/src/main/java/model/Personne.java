@@ -12,7 +12,7 @@ import javax.persistence.Id;
 public class Personne {
 
 	@Id //OBLIGATOIRE
-	@GeneratedValue(strategy = GenerationType.IDENTITY)//SEMI-OBLIGATOIRE
+	@GeneratedValue(strategy = GenerationType.IDENTITY)//SEMI-OBLIGATOIRE pour de l'auto-increment
 	private Integer numero;
 	private String nom;
 	private String prenom;
