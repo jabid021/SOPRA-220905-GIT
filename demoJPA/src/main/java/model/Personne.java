@@ -12,9 +12,12 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 
 @Entity //OBLIGATOIRE
@@ -48,10 +51,17 @@ public class Personne {
 	
 	
 	@OneToOne
+	@JoinColumn(name="ordinateur",nullable = false)
 	private Ordinateur ordi;
 	
 	
 	@ManyToMany
+	@JoinTable(
+			name="modules",
+			joinColumns = @JoinColumn(name="stagiaire"), //joinColumn = col principale = id maitre = classe actuelle donc ici Personne
+			inverseJoinColumns = @JoinColumn(name="cours"), // col secondaire = id esclave =  l'autre classe donc ici Matiere
+			uniqueConstraints = @UniqueConstraint(columnNames = {"stagiaire","cours"})
+			)
 	private List<Matiere> modules=new ArrayList();
 	
 	@Embedded
