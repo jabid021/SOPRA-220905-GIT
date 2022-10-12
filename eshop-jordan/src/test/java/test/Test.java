@@ -23,9 +23,15 @@ public class Test {
 		Fournisseur fournisseur = new Fournisseur("Abid","Charly","AJC");
 		fournisseur.setAdresse(a1);
 		
-		Produit produit1 = new Produit("Formation Algo",1200);
-		Produit produit2 = new Produit("Formation Java",1600);
-		Produit produit3 = new Produit("Formation JPA",2200);
+		Produit produit1 = new Produit("Formation Algo",1200,fournisseur);
+		Produit produit2 = new Produit("Formation Java",1600,fournisseur);
+		Produit produit3 = new Produit("Formation JPA",2200,fournisseur);
+		
+		
+		
+		client1.getAchats().add(produit1);
+		client1.getAchats().add(produit2);
+		client2.getAchats().add(produit3);
 
 		
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("sopraJPA");
@@ -35,12 +41,12 @@ public class Test {
 		em.getTransaction().begin();
 		
 		
-		em.persist(client1);
-		em.persist(client2);
 		em.persist(fournisseur);
 		em.persist(produit1);
 		em.persist(produit2);
 		em.persist(produit3);
+		em.persist(client1);
+		em.persist(client2);
 		
 		em.getTransaction().commit();
 		
