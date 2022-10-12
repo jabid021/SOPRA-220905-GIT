@@ -1,15 +1,12 @@
 package model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue("customer")
@@ -22,13 +19,16 @@ public class Client extends Personne {
 	private LocalDate naissance;
 	
 	
-	@ManyToMany
+	/*@ManyToMany
 	@JoinTable(
 			name="achats",
 			joinColumns = @JoinColumn(name="acheteur"),
 			inverseJoinColumns = @JoinColumn(name="produit")
 			)
-	private List<Produit> achats = new ArrayList();
+	private List<Produit> achats = new ArrayList();*/
+	
+	@OneToMany(mappedBy="acheteur")
+	private List<Achat> achats;
 
 	public Client() {
 	}
@@ -58,11 +58,11 @@ public class Client extends Personne {
 	
 	
 
-	public List<Produit> getAchats() {
+	public List<Achat> getAchats() {
 		return achats;
 	}
 
-	public void setAchats(List<Produit> achats) {
+	public void setAchats(List<Achat> achats) {
 		this.achats = achats;
 	}
 
