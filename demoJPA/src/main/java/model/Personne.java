@@ -1,6 +1,8 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -10,6 +12,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -41,7 +45,14 @@ public class Personne {
 	
 	private transient String attributJava;
 	
-	private transient Ordinateur ordi;
+	
+	
+	@OneToOne
+	private Ordinateur ordi;
+	
+	
+	@ManyToMany
+	private List<Matiere> modules=new ArrayList();
 	
 	@Embedded
 	private Adresse adresse;
@@ -145,6 +156,16 @@ public class Personne {
 
 	public void setOrdi(Ordinateur ordi) {
 		this.ordi = ordi;
+	}
+	
+	
+
+	public List<Matiere> getModules() {
+		return modules;
+	}
+
+	public void setModules(List<Matiere> modules) {
+		this.modules = modules;
 	}
 
 	@Override

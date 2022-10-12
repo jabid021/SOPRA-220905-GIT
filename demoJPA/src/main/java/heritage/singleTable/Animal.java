@@ -1,4 +1,4 @@
-package heritage;
+package heritage.singleTable;
 
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
@@ -10,7 +10,7 @@ import javax.persistence.InheritanceType;
 
 
 
-@Entity
+//@Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 //DTYPE => DiscriminatorType
 @DiscriminatorColumn(name = "espece",columnDefinition = "ENUM('felin','ours','elephant')")

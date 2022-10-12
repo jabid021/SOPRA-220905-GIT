@@ -1,18 +1,35 @@
 package model;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 @Entity
-public class Personne {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="type_personne",columnDefinition = "ENUM('customer','supplier')")
+@Table(name="person")
+
+public abstract class Personne {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	private String nom;
-	private String prenom;
+	protected Integer id;
+	
+	@Column(name="lastname",length=30,nullable = false)
+	protected String nom;
+	@Column(name="firstname",length=30,nullable = false)
+	protected String prenom;
+	
+	@Embedded
+	protected Adresse adresse;
 
 
 
@@ -55,6 +72,15 @@ public class Personne {
 		this.prenom = prenom;
 	}
 
+	
+
+	public Adresse getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(Adresse adresse) {
+		this.adresse = adresse;
+	}
 
 	@Override
 	public String toString() {
