@@ -26,10 +26,14 @@ public class Test {
 		p1.setAdresse(a1);
 		p2.setAdresse(a1);
 
+		
 
 		Ordinateur o1 = new Ordinateur("Mac");
 		Ordinateur o2 = new Ordinateur("Asus");
 
+		
+		p1.setOrdi(o1);
+		p2.setOrdi(o2);
 
 		Formateur f1 = new Formateur("Olivier Gozlan");
 		Matiere m1  = new Matiere("Spring", f1);
@@ -37,6 +41,8 @@ public class Test {
 
 		p1.getModules().add(m1);
 		p1.getModules().add(m2);
+		
+		p2.getModules().add(m1);
 
 
 		//Creation de la connexion à la BDD avec la persistence-unit sopraJPA (ligne 7 persistence.xml)
@@ -50,23 +56,23 @@ public class Test {
 		//Pour les opérations insert/update/delete, il faut une transaction qui "begin" puis qui commit"
 		em.getTransaction().begin();
 
-		//insert p1
-		em.persist(p1);
-		//insert p2
-		em.persist(p2);
+	
 
 		em.persist(o1);
 		em.persist(o2);
 		em.persist(f1);
 		em.persist(m1);
 		em.persist(m2);
+		
+		
+		//insert p1
+		em.persist(p1);
+		//insert p2
+		em.persist(p2);
+		
 
 		em.getTransaction().commit();
 
-
-
-		System.out.println(em.find(Personne.class, 1));
-		System.out.println(em.find(Personne.class, 2));
 		em.close();
 		emf.close();
 

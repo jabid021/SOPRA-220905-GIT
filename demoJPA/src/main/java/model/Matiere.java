@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Matiere {
@@ -13,7 +14,8 @@ public class Matiere {
 	private Integer id;
 	private String libelle;
 	
-	private transient Formateur formateur;
+	@ManyToOne
+	private Formateur formateur;
 
 	
 	public Matiere() {

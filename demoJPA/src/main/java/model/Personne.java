@@ -12,6 +12,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -43,9 +45,14 @@ public class Personne {
 	
 	private transient String attributJava;
 	
-	private transient Ordinateur ordi;
 	
-	private transient List<Matiere> modules=new ArrayList();
+	
+	@OneToOne
+	private Ordinateur ordi;
+	
+	
+	@ManyToMany
+	private List<Matiere> modules=new ArrayList();
 	
 	@Embedded
 	private Adresse adresse;
