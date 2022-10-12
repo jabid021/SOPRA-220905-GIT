@@ -1,11 +1,14 @@
 package model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Matiere {
@@ -19,6 +22,8 @@ public class Matiere {
 	@JoinColumn(name="enseignant",nullable = false)
 	private Formateur formateur;
 
+	@OneToMany(mappedBy = "matiere" )
+	private List<Module> modules;
 	
 	public Matiere() {
 	}
@@ -57,6 +62,18 @@ public class Matiere {
 
 	public void setFormateur(Formateur formateur) {
 		this.formateur = formateur;
+	}
+
+
+	
+
+	public List<Module> getModules() {
+		return modules;
+	}
+
+
+	public void setModules(List<Module> modules) {
+		this.modules = modules;
 	}
 
 
