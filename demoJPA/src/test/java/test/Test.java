@@ -12,6 +12,7 @@ import model.Formateur;
 import model.Matiere;
 import model.Ordinateur;
 import model.Personne;
+import model.Module;
 
 public class Test {
 
@@ -39,10 +40,12 @@ public class Test {
 		Matiere m1  = new Matiere("Spring", f1);
 		Matiere m2  = new Matiere("Angular", f1);
 
-		p1.getModules().add(m1);
-		p1.getModules().add(m2);
 		
-		p2.getModules().add(m1);
+		Module module1 = new Module(m1, p1);
+		Module module2 = new Module(m2, p1);
+		Module module3 = new Module(m1, p2);
+		
+	
 
 
 		//Creation de la connexion à la BDD avec la persistence-unit sopraJPA (ligne 7 persistence.xml)
@@ -70,6 +73,9 @@ public class Test {
 		//insert p2
 		em.persist(p2);
 		
+		em.persist(module1);
+		em.persist(module2);
+		em.persist(module3);
 
 		em.getTransaction().commit();
 

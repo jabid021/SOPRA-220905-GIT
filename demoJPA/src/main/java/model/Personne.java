@@ -1,7 +1,6 @@
 package model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -13,11 +12,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 
 @Entity //OBLIGATOIRE
@@ -55,7 +52,7 @@ public class Personne {
 	private Ordinateur ordi;
 	
 	
-	@ManyToMany
+	/*@ManyToMany
 	@JoinTable(
 			name="modules",
 			joinColumns = @JoinColumn(name="stagiaire"), //joinColumn = col principale = id maitre = classe actuelle donc ici Personne
@@ -63,6 +60,10 @@ public class Personne {
 			uniqueConstraints = @UniqueConstraint(columnNames = {"stagiaire","cours"})
 			)
 	private List<Matiere> modules=new ArrayList();
+	*/
+	
+	@OneToMany(mappedBy = "apprenant")
+	private List<Module> modules;
 	
 	@Embedded
 	private Adresse adresse;
@@ -170,11 +171,11 @@ public class Personne {
 	
 	
 
-	public List<Matiere> getModules() {
+	public List<Module> getModules() {
 		return modules;
 	}
 
-	public void setModules(List<Matiere> modules) {
+	public void setModules(List<Module> modules) {
 		this.modules = modules;
 	}
 

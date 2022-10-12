@@ -1,9 +1,12 @@
 package model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Formateur {
@@ -13,6 +16,10 @@ public class Formateur {
 	private Integer id;
 	
 	private String nom;
+	
+	
+	@OneToMany(mappedBy = "formateur")
+	private List<Matiere> matieres;
 	
 	
 	public Formateur() {
@@ -41,6 +48,17 @@ public class Formateur {
 
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+
+	
+
+	public List<Matiere> getMatieres() {
+		return matieres;
+	}
+
+
+	public void setMatieres(List<Matiere> matieres) {
+		this.matieres = matieres;
 	}
 
 
