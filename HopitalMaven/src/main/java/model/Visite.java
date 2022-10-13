@@ -2,14 +2,43 @@ package model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name="visite")
 public class Visite {
+	
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="numero")
 	private int id;
+		
+	@ManyToOne
+	@JoinColumn(name="id_patient",nullable = false)
 	private Patient patient;
+	
+	@ManyToOne
+	@JoinColumn(name="id_medecin",nullable = false)
 	private Medecin medecin;
+	
 	private double prix =20;
 	private int salle;
+	
+	@Column(name="date_visite",nullable = false)
 	private LocalDate dateVisite;
 	
+	
+	public Visite() {
+	}
 	
 	public Visite(int id, Patient patient, Medecin medecin, double prix, int salle, LocalDate dateVisite) {
 		this.id = id;
@@ -92,7 +121,7 @@ public class Visite {
 
 	@Override
 	public String toString() {
-		return "Visite [id=" + id + ", patient=" + patient + ", medecin=" + medecin.getId() + ", prix=" + prix + ", salle="
+		return "Visite [id=" + id + ", patient=" + patient + ", medecin=" + medecin + ", prix=" + prix + ", salle="
 				+ salle + ", dateVisite=" + dateVisite + "]";
 	}
 	

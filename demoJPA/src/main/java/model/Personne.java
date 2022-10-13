@@ -8,6 +8,7 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -48,7 +49,7 @@ public class Personne {
 	
 	
 	@OneToOne
-	@JoinColumn(name="ordinateur",nullable = false)
+	@JoinColumn(name="ordinateur")
 	private Ordinateur ordi;
 	
 	
@@ -182,8 +183,10 @@ public class Personne {
 	@Override
 	public String toString() {
 		return "Personne [numero=" + numero + ", nom=" + nom + ", prenom=" + prenom + ", naissance=" + naissance
-				+ ", formateur=" + formateur + ", salaire=" + salaire + ", civ=" + civ + "]";
+				+ ", formateur=" + formateur + ", salaire=" + salaire + ", civ=" + civ + ", ordi=" + ordi + ", adresse="
+				+ adresse + "]";
 	}
+
 
 	
 	
