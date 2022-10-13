@@ -20,7 +20,7 @@ public class Visite {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="numero")
-	private int id;
+	private Integer id;
 		
 	@ManyToOne
 	@JoinColumn(name="id_patient",nullable = false)
@@ -40,7 +40,7 @@ public class Visite {
 	public Visite() {
 	}
 	
-	public Visite(int id, Patient patient, Medecin medecin, double prix, int salle, LocalDate dateVisite) {
+	public Visite(Integer id, Patient patient, Medecin medecin, double prix, int salle, LocalDate dateVisite) {
 		this.id = id;
 		this.patient = patient;
 		this.medecin = medecin;
@@ -59,12 +59,12 @@ public class Visite {
 
 
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

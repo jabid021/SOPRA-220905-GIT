@@ -10,9 +10,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
-import dao.DAOCompte;
-import dao.DAOPatient;
-import dao.DAOVisite;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import context.Context;
+import dao.jpa.DAOCompte;
+import dao.jpa.DAOPatient;
+import dao.jpa.DAOVisite;
 import model.Compte;
 import model.Medecin;
 import model.Patient;
@@ -21,12 +25,12 @@ import model.Visite;
 
 public class App {
 
+	
 	static LinkedList<Patient> fileAttente = new LinkedList();
 	static Compte connected;
-	static DAOCompte daoCompte = new DAOCompte();
-	static DAOPatient daoPatient = new DAOPatient();
-	static DAOVisite daoVisite = new DAOVisite();
 	static boolean isPause = false;
+	static Context singleton = Context.getSingleton();
+	
 
 	public static String saisieString(String msg) {
 		Scanner sc = new Scanner(System.in);
@@ -72,7 +76,7 @@ public class App {
 	public static void seConnecter() {
 		String login = saisieString("Saisir login");
 		String password = saisieString("Saisir password");
-		connected = daoCompte.seConnecter(login, password);
+		connected = singleton.getDaoCompte().seConnecter(login, password);
 
 		if (connected instanceof Secretaire) {
 			if (isPause) {
@@ -97,6 +101,7 @@ public class App {
 		}
 
 		else if (connected instanceof Medecin) {
+			((Medecin) connected).setVisites(new ArrayList());
 			int salle = saisieInt("Choisir une salle ");
 			((Medecin) connected).setSalle(salle);
 			menuMedecin();
@@ -112,7 +117,7 @@ public class App {
 		System.out.println("Menu Secretaire : ");
 		System.out.println("1 - Recevoir un patient");
 		System.out.println("2 - Les visites d'un patient");
-		System.out.println("3 - L'Ã©tat de la file d'attente");
+		System.out.println("3 - L'état de la file d'attente");
 		System.out.println("4 - Partir en pause");
 		System.out.println("5 - Se deconnecter");
 		int choix = saisieInt("Choisir un menu");
@@ -145,7 +150,7 @@ public class App {
 
 		System.out.println("Menu Medecin : ");
 		System.out.println("1 - Recevoir un patient");
-		System.out.println("2 - L'Ã©tat de la file d'attente");
+		System.out.println("2 - L'état de la file d'attente");
 		System.out.println("3 - Sauvegarder la visite");
 		System.out.println("4 - Se deconnecter");
 		int choix = saisieInt("Choisir un menu");
@@ -174,39 +179,49 @@ public class App {
 
 	public static void recevoirPatient() {
 
+
 		if (connected instanceof Secretaire) {
 
 			int idPatient = saisieInt("Saisir l'id du patient");
-			Patient p = daoPatient.findById(idPatient);
+			Patient p = singleton.getDaoPatient().findById(idPatient);
 			if (p == null) {
 				String prenom = saisieString("Saisir votre prenom");
 				String nom = saisieString("Saisir votre nom");
 
 				p = new Patient(idPatient, nom, prenom);
-				p = daoPatient.insert(p);
+				p = singleton.getDaoPatient().save(p);
 			}
 			fileAttente.add(p);
 
-		} else {
+		} 
+		else {
+
 			Medecin medecin= (Medecin) connected;
-			
-			// Retirer le premier patient de la file, lui creer une visite
-			if (!fileAttente.isEmpty()) {
-				Patient p = fileAttente.poll();
-				Visite visite = new Visite(p, medecin);
-				medecin.getVisites().add(visite);
+
+			if(fileAttente.isEmpty()) 
+			{
+				System.out.println("Aucun patient dans la file d'attente");
 			}
-			if (medecin.getVisites().size() == 10) {
-				sauvegarderVisite();
+			else {
+				// Retirer le premier patient de la file, lui creer une visite
+				if (!fileAttente.isEmpty()) {
+					Patient p = fileAttente.poll();
+					Visite visite = new Visite(p, medecin);
+					medecin.getVisites().add(visite);
+				}
+				if (medecin.getVisites().size() == 10) {
+					sauvegarderVisite();
+				}
 			}
 		}
+
 
 	}
 
 	public static void visitesPatient() {
 		Integer id = saisieInt("Saisir l'id du patient");
-		List<Visite> consultations = daoVisite.findAllByIdPatient(id);
-		if (consultations != null) {
+		List<Visite> consultations = singleton.getDaoVisite().findAllByIdPatient(id);
+		if (!consultations.isEmpty()) {
 			for (Visite v : consultations) {
 				System.out.println(v);
 			}
@@ -276,11 +291,16 @@ public class App {
 	}
 
 	public static void sauvegarderVisite() {
-
-		for (Visite v : ((Medecin) connected).getVisites()) {
-			daoVisite.insert(v);
+		Medecin medecin = (Medecin) connected;
+		if(medecin.getVisites().isEmpty()) 
+		{
+			System.out.println("Pas de nouvelles visites à save");
 		}
-		((Medecin) connected).getVisites().clear();
+		
+		for (Visite v : medecin.getVisites()) {
+			singleton.getDaoVisite().save(v);
+		}
+		medecin.getVisites().clear();
 
 	}
 

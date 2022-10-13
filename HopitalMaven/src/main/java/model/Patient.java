@@ -6,9 +6,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name="patient")
+@Table(name="patient",uniqueConstraints = @UniqueConstraint(columnNames = {"nom","prenom"}))
 public class Patient implements Serializable {
 	 
 	@Id

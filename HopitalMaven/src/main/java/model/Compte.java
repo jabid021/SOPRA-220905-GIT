@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -19,7 +20,7 @@ public class Compte {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Integer id;
-	@Column(length = 35,nullable = false)
+	@Column(length = 35,nullable = false,unique=true)
 	protected String login;
 	@Column(length = 100,nullable = false)
 	protected String password;
