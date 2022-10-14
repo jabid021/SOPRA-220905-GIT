@@ -5,6 +5,9 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+
+//crac
+
 @Embeddable
 public class Adresse implements Serializable{
 	
