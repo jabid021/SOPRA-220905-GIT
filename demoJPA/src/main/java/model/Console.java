@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Version;
 
 @Entity
 public class Console {
@@ -15,6 +16,9 @@ public class Console {
 	private String libelle;
 	private Double prix;
 	
+	
+	@Version
+	private int version;
 	
 	
 	public Console() {
@@ -61,6 +65,19 @@ public class Console {
 
 	public void setPrix(Double prix) {
 		this.prix = prix;
+	}
+
+	
+
+
+	public int getVersion() {
+		return version;
+	}
+
+
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 
