@@ -4,12 +4,13 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import dao.DAOVaisseau;
+import dao.IDAOVaisseau;
 
 public class Context {
 
 	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("space");
 	
-	private DAOVaisseau daoVaisseau = new DAOVaisseau();	
+	private IDAOVaisseau daoVaisseau = new DAOVaisseau();	
 	
 	private static Context singleton=null;
 
