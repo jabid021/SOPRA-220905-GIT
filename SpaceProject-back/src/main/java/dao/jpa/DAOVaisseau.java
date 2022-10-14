@@ -1,4 +1,4 @@
-package dao;
+package dao.jpa;
 
 import java.util.List;
 
@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import context.Context;
+import dao.IDAOVaisseau;
 import model.Mission;
 import model.Vaisseau;
 

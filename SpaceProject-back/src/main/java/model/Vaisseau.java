@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,11 +28,13 @@ public class Vaisseau implements Serializable {
 	private int capacite;
 	@Column(name="date_service",columnDefinition = "date ", nullable = false)
 	private LocalDate miseEnService;
-	@Column(columnDefinition = " tinyint(1)", nullable = false)
+	@Column(nullable = false)
 	private boolean fonctionnel;
 	
-	@Column(name="type_vaisseau",columnDefinition = "ENUM('Fusee(20)','Navette(28)','Sonde(35)')")
+	@Enumerated(EnumType.STRING)
+	@Column(name="type_vaisseau",columnDefinition = "ENUM('Fusee','Navette','Sonde')")
 	private TypeVaisseau typeVaisseau ;
+	
 	@OneToMany(mappedBy = "vaisseau")
 	private List<Mission> missions;
 	

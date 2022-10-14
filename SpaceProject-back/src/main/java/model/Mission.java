@@ -13,9 +13,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -37,7 +37,7 @@ public class Mission  implements Serializable {
 	@Column(nullable = false,length = 30)
 	private String objectif;
 	
-	
+	@Column(columnDefinition = "text")
 	private String description;
 	
 	@ManyToOne
@@ -56,7 +56,8 @@ public class Mission  implements Serializable {
 	@JoinColumn(name="vaisseau")
 	private Vaisseau vaisseau;
 	
-	@OneToMany(mappedBy = "mission")
+	@ManyToMany
+	@JoinTable(name="participation",joinColumns = @JoinColumn(name="mission"),inverseJoinColumns = @JoinColumn(name="astronaute"))
 	private List<Astronaute> astronautes =new ArrayList();
 		
 	
@@ -194,17 +195,14 @@ public class Mission  implements Serializable {
 	}
 
 
+
+
 	@Override
 	public String toString() {
-		if(astronautes.isEmpty()) {
-			return "Mission [id="+id+",\n dateDebut=" + dateDebut + ",\n dateFin=" + dateFin + ",\n objectif=" + objectif + ",\n description="
-				+ description + ",\n pays=" + pays + ",\n statut=" + statut + ",\n planete=" + planete + ",\n vaisseau="
-				+ vaisseau + "]";
-		}else {
-			return "Mission [id="+id+",\n dateDebut=" + dateDebut + ",\n dateFin=" + dateFin + ",\n objectif=" + objectif + ",\n description="
-					+ description + ",\n pays=" + pays + ",\n statut=" + statut + ",\n planete=" + planete + ",\n vaisseau="
-					+ vaisseau +  " \n equipage :" + astronautes + "]";
-		}
-		
+		return "Mission [id=" + id + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", objectif=" + objectif
+				+ ", description=" + description + ", pays=" + pays + ", statut=" + statut + ", planete=" + planete
+				+ ", vaisseau=" + vaisseau + "]";
 	}
+
+
 }

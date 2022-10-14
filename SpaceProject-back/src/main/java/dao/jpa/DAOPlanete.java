@@ -10,10 +10,10 @@ import javax.persistence.Query;
 import context.Context;
 import dao.IDAOPlanete;
 import model.Planete;
-import model.Planete;
 
-public class DAOPlanete implements IDAOPlanete{
+public class DAOPlanete implements IDAOPlanete {
 
+	
 	@Override
 	public Planete findById(Integer id) {
 		EntityManager em = Context.getSingleton().getEmf().createEntityManager();		
@@ -65,11 +65,10 @@ public class DAOPlanete implements IDAOPlanete{
 	}
 
 	
-	static EntityManagerFactory emf = Persistence.createEntityManagerFactory("space_project");
     
    
 	public List<Planete> findAllByIdPlanetes(Integer idMission) {
-		EntityManager em = emf.createEntityManager();
+		EntityManager em = Context.getSingleton().getEmf().createEntityManager();
 
 		Query requete = em.createQuery("select p from Planete p where p.mission.id=:idMission");
 		requete.setParameter("idMission", idMission);
@@ -80,6 +79,4 @@ public class DAOPlanete implements IDAOPlanete{
 		return planetes;
 		
 	}
-
-	
 }

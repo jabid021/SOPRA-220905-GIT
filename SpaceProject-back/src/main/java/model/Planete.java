@@ -121,7 +121,7 @@ public class Planete implements Serializable {
 	@Override
 	public String toString() {
 		return "Planete [id=" + id + ", nom=" + nom + ", diametre=" + diametre + ", satellites=" + satellites
-				+ ", distance=" + distance + ", typePlanete=" + typePlanete + ", mission=" + mission + "]";
+				+ ", distance=" + distance + ", typePlanete=" + typePlanete + "]";
 	}
 	
 	

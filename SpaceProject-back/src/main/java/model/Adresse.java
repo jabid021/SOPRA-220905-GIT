@@ -26,7 +26,7 @@ public class Adresse implements Serializable{
 	private String cp;
 	
 	@ManyToOne
-	@Column(nullable = false,columnDefinition = "INT(8) default 'NULL'")
+	@JoinColumn(name="pays",nullable = false,columnDefinition = "INT(8) default 'NULL'")
 	private Pays pays;
 
 	

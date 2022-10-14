@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.OneToMany;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 
-@Embeddable
+@Entity
 public class Astronaute extends Compte {
 	
 	@Column(length = 30)
@@ -20,9 +20,10 @@ public class Astronaute extends Compte {
 	@Column(name="debut")
 	private LocalDate debutCarriere;
 	
+	@Column(columnDefinition = "tinyint(4)")
 	private boolean actif;
 	
-	@OneToMany(mappedBy = "astronautes")
+	@ManyToMany(mappedBy = "astronautes")
 	private List<Mission> missions = new ArrayList();;
 	
 
