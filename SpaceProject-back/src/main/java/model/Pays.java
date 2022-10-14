@@ -35,6 +35,13 @@ public class Pays implements Serializable {
 		this.nom = nom;
 	}
 
+	public List<Mission> getMission() {
+		return missions;
+	}
+
+	public void setMissions(List<Mission> missions) {
+		this.missions = missions;
+	}
 
 	public String getNom() {
 		return nom;
