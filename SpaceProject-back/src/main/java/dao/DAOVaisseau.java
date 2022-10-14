@@ -2,9 +2,11 @@ package dao;
 
 import java.util.List;
 
-import context.Context;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
+import context.Context;
+import model.Mission;
 import model.Vaisseau;
 
 public class DAOVaisseau implements IDAOVaisseau{
@@ -57,6 +59,18 @@ public class DAOVaisseau implements IDAOVaisseau{
 
 
 		em.close();
+	}
+	
+	@Override
+	public List<Vaisseau> findAllByMission(Mission idMission) {
+		EntityManager em = Context.getSingleton().getEmf().createEntityManager();
+		Query requete = em.createQuery("select v from Vaisseau v where v.mission.id=:idMission");
+		requete.setParameter("idMission", idMission);
+		List<Vaisseau> vaisseaux = requete.getResultList();
+		
+		em.close();
+
+		return vaisseaux;
 	}
 	
 	
