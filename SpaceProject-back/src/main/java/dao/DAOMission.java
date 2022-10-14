@@ -6,7 +6,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import context.Context;
+import model.Compte;
 import model.Mission;
+import model.Statut;
 
 
 public class DAOMission implements IDAOMission{
@@ -60,5 +62,26 @@ public class DAOMission implements IDAOMission{
 		em.close();
 	}
 	
+	public List<Statut> findAll(Statut statut) 
+	{
+		EntityManager em = Context.getSingleton().getEmf().createEntityManager();
+
+		List<Statut> s = em.createQuery("from Statut").getResultList();
+
+		em.close();
+
+		return s;
+	}
 	
+	public List<Mission> findByDateDebutBetween(String debut, String fin){
+
+		EntityManager em = Context.getSingleton().getEmf().createEntityManager();
+		
+        List<Mission> m = em.createQuery("select m from Mission where m.debut > :debut and m.debut < :fin ").getResultList(); 
+       
+        em.close();
+
+		return m ;
+        
+	}
 }
