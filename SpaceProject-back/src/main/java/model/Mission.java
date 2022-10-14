@@ -180,6 +180,7 @@ public class Mission  implements Serializable {
 
 
 	public void setAstronautes(List<Astronaute> astronautes) {
+		
 		this.astronautes = astronautes;
 	}
 	
