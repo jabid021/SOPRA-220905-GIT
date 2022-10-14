@@ -1,13 +1,38 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+
+@Entity
 public class Astronaute extends Compte {
+	
+	@Column(length = 30)
 	private String nom;
+	
+	@Column(length = 30)
 	private String prenom;
+	
+	@Column(name="debut")
 	private LocalDate debutCarriere;
+	
+	@Column(columnDefinition = "tinyint(4)")
 	private boolean actif;
+	
+	@ManyToMany(mappedBy = "astronautes")
+	private List<Mission> missions = new ArrayList();;
+	
 
+	public Astronaute() {
+
+		
+	}
+
+	
 	public Astronaute(String password, String login, Adresse adresse, String nom, String prenom,
 			LocalDate debutCarriere, boolean actif) {
 		super(password, login, adresse);
@@ -28,6 +53,17 @@ public class Astronaute extends Compte {
 	}
 	
 	
+	
+	public List<Mission> getMissions() {
+		return missions;
+	}
+
+
+	public void setMissions(List<Mission> missions) {
+		this.missions = missions;
+	}
+
+
 	public String getNom() {
 		return nom;
 	}

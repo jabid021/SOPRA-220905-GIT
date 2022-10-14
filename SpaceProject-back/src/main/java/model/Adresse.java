@@ -2,13 +2,36 @@ package model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+
+//crac
+
+@Embeddable
 public class Adresse implements Serializable{
-	private String numero;
-	private String voie;
-	private String ville;
-	private String cp;
-	private Pays pays;
 	
+	@Column(nullable = false,columnDefinition = "VARCHAR(8) default 'NULL'")
+	private String numero;
+	
+	@Column(nullable = false,columnDefinition = "VARCHAR(50) default 'NULL'")
+	private String voie;
+	
+	@Column(nullable = false,columnDefinition = "VARCHAR(50) default 'NULL'")
+	private String ville;
+	
+	@Column(nullable = false,columnDefinition = "VARCHAR(10) default 'NULL'")
+	private String cp;
+	
+	@ManyToOne
+	@JoinColumn(name="pays",nullable = false,columnDefinition = "INT(8) default 'NULL'")
+	private Pays pays;
+
+	
+	public Adresse() {
+	}
 	
 	public Adresse(String numero, String voie, String ville, String cp, Pays pays) {
 		this.numero = numero;

@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Scanner;
 
 import context.Context;
-import dao.DAOCompte;
-import dao.DAOMission;
-import dao.DAOPays;
-import dao.DAOPlanete;
-import dao.DAOVaisseau;
+import dao.IDAOCompte;
+import dao.IDAOMission;
+import dao.IDAOPays;
+import dao.IDAOPlanete;
+import dao.IDAOVaisseau;
 import model.Admin;
 import model.Adresse;
 import model.Astronaute;
@@ -29,7 +29,7 @@ public class App {
 	static IDAOPays daoPays =  Context.getSingleton().getDaoPays();
 	static IDAOVaisseau daoVaisseau=  Context.getSingleton().getDaoVaisseau();
 	static IDAOCompte daoCompte =  Context.getSingleton().getDaoCompte();
-	static IDAOMission daoMission =  Context.getSingleton().getDaoMision();
+	static IDAOMission daoMission =  Context.getSingleton().getDaoMission();
 
 	public static String saisieString(String msg) 
 	{
