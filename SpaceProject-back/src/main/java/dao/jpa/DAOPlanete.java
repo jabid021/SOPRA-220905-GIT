@@ -66,17 +66,4 @@ public class DAOPlanete implements IDAOPlanete {
 
 	
     
-   
-	public List<Planete> findAllByIdPlanetes(Integer idMission) {
-		EntityManager em = Context.getSingleton().getEmf().createEntityManager();
-
-		Query requete = em.createQuery("select p from Planete p where p.mission.id=:idMission");
-		requete.setParameter("idMission", idMission);
-		List<Planete> planetes = requete.getResultList();
-		
-		em.close();
-
-		return planetes;
-		
-	}
 }

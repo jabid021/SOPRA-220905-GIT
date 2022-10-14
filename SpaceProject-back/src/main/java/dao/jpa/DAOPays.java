@@ -77,18 +77,7 @@ public class DAOPays implements IDAOPays{
 		em.close();
 	}
 
-	
-	@Override
-	public List<Pays> findAllByMission(Integer id) {
-		EntityManager em = Context.getSingleton().getEmf().createEntityManager();
-		Query requete = em.createQuery("SELECT p from Pays p pm.id=:id ");
-		requete.setParameter("id", id);
-		List<Pays> pays = requete.getResultList();
-		
-		em.close();
 
-		return pays;
-	}
 
 
 }

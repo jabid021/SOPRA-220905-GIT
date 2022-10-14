@@ -7,6 +7,5 @@ import model.Vaisseau;
 
 public interface IDAOVaisseau extends IDAO<Vaisseau, Integer>{
 	
-		public List<Vaisseau> findAllByMission(Mission idMission); 
-
+	
 }

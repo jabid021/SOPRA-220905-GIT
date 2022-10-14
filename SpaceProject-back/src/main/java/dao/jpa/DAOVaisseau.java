@@ -62,17 +62,6 @@ public class DAOVaisseau implements IDAOVaisseau{
 		em.close();
 	}
 	
-	@Override
-	public List<Vaisseau> findAllByMission(Mission idMission) {
-		EntityManager em = Context.getSingleton().getEmf().createEntityManager();
-		Query requete = em.createQuery("select v from Vaisseau v where v.mission.id=:idMission");
-		requete.setParameter("idMission", idMission);
-		List<Vaisseau> vaisseaux = requete.getResultList();
-		
-		em.close();
-
-		return vaisseaux;
-	}
 	
 	
 }

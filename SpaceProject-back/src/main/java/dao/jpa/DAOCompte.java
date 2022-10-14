@@ -96,17 +96,7 @@ public class DAOCompte implements IDAOCompte{
 		return compte;
 	}
 	
-	@Override
-	public List<Astronaute> findAllByMission(Integer id) {
-		EntityManager em = Context.getSingleton().getEmf().createEntityManager();
-		Query requete = em.createQuery("SELECT c from Astronaute c join c.missions m where m.id=:id ");
-		requete.setParameter("id", id);
-		List<Astronaute> missions = requete.getResultList();
-		
-		em.close();
-
-		return missions;
-	}
+	
 
 
 }
