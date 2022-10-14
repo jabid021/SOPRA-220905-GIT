@@ -15,7 +15,7 @@ public class DAOVaisseau implements IDAOVaisseau{
 		Vaisseau v = em.find(Vaisseau.class, id);
 		em.close();
 
-		return p;
+		return v;
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public class DAOVaisseau implements IDAOVaisseau{
 
 		em.close();
 
-		return p;
+		return v;
 	}
 
 	@Override
