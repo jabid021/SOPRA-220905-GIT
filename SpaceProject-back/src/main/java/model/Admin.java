@@ -1,6 +1,16 @@
 package model;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Admin extends Compte{
+	
+	
+	public Admin() {
+	
+	
+	}
+	
 	
 	public Admin(String login, String password, Adresse adresse) {
 		super(login, password, adresse);
