@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -12,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -48,7 +50,7 @@ public class Personne {
 	
 	
 	@OneToOne
-	@JoinColumn(name="ordinateur",nullable = false)
+	@JoinColumn(name="ordinateur")
 	private Ordinateur ordi;
 	
 	
@@ -64,6 +66,11 @@ public class Personne {
 	
 	@OneToMany(mappedBy = "apprenant")
 	private List<Module> modules;
+	
+	
+	@ManyToMany
+	private List<Console> consoles=new ArrayList();
+	
 	
 	@Embedded
 	private Adresse adresse;
@@ -178,12 +185,24 @@ public class Personne {
 	public void setModules(List<Module> modules) {
 		this.modules = modules;
 	}
+	
+	
+
+	public List<Console> getConsoles() {
+		return consoles;
+	}
+
+	public void setConsoles(List<Console> consoles) {
+		this.consoles = consoles;
+	}
 
 	@Override
 	public String toString() {
 		return "Personne [numero=" + numero + ", nom=" + nom + ", prenom=" + prenom + ", naissance=" + naissance
-				+ ", formateur=" + formateur + ", salaire=" + salaire + ", civ=" + civ + "]";
+				+ ", formateur=" + formateur + ", salaire=" + salaire + ", civ=" + civ + ", ordi=" + ordi + ", adresse="
+				+ adresse + "]";
 	}
+
 
 	
 	

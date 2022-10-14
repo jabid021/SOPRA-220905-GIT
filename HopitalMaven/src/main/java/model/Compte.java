@@ -1,20 +1,44 @@
 package model;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="type_compte",columnDefinition = "ENUM('Medecin','Secretaire')")
+@Table(name="compte")
 public class Compte {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Integer id;
-	protected String mail;
+	@Column(length = 35,nullable = false,unique=true)
+	protected String login;
+	@Column(length = 100,nullable = false)
 	protected String password;
+	
+	
+	public Compte() {
+	}
+	
 	
 	public Compte(Integer id, String mail, String password) {
 
 		this.id = id;
-		this.mail = mail;
+		this.login = mail;
 		this.password = password;
 	}
 	
 	public Compte(String mail, String password) {
-		this.mail = mail;
+		this.login = mail;
 		this.password = password;
 	}
 
@@ -26,12 +50,12 @@ public class Compte {
 		this.id = id;
 	}
 
-	public String getMail() {
-		return mail;
+	public String getLogin() {
+		return login;
 	}
 
-	public void setMail(String mail) {
-		this.mail = mail;
+	public void setLogin(String mail) {
+		this.login = mail;
 	}
 
 	public String getPassword() {
@@ -44,7 +68,7 @@ public class Compte {
 
 	@Override
 	public String toString() {
-		return "Compte [id=" + id + ", mail=" + mail + ", password=" + password + "]";
+		return "Compte [id=" + id + ", mail=" + login + ", password=" + password + "]";
 	}
 	
 	

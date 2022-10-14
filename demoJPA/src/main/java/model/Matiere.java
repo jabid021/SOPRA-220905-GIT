@@ -79,8 +79,10 @@ public class Matiere {
 
 	@Override
 	public String toString() {
-		return "Matiere [id=" + id + ", libelle=" + libelle + "]";
+		return "Matiere [id=" + id + ", libelle=" + libelle + ", formateur=" + formateur + "]";
 	}
+
+
 	
 	
 }

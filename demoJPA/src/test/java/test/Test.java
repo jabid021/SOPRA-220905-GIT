@@ -8,16 +8,23 @@ import javax.persistence.Persistence;
 
 import model.Adresse;
 import model.Civilite;
+import model.Console;
 import model.Formateur;
 import model.Matiere;
+import model.Module;
 import model.Ordinateur;
 import model.Personne;
-import model.Module;
 
 public class Test {
 
 	public static void main(String[] args) {
 
+		
+		Console c1 = new Console("PS5", 499.99);
+		Console c2 = new Console("Xbox", 350.99);
+		Console c3 = new Console("Switch", 250.00);
+		
+		
 		Adresse a1 = new Adresse("6", "rue rougemont");
 
 		Personne p1 = new Personne("Jordan",LocalDate.parse("1993-05-01"),true,1500.005,Civilite.homme);
@@ -26,8 +33,9 @@ public class Test {
 
 		p1.setAdresse(a1);
 		p2.setAdresse(a1);
-
-		
+		p1.getConsoles().add(c1);
+		p1.getConsoles().add(c2);
+		p1.getConsoles().add(c3);
 
 		Ordinateur o1 = new Ordinateur("Mac");
 		Ordinateur o2 = new Ordinateur("Asus");
@@ -60,12 +68,18 @@ public class Test {
 		em.getTransaction().begin();
 
 	
-
+		em.persist(c1);
+		em.persist(c2);
+		em.persist(c3);
 		em.persist(o1);
 		em.persist(o2);
 		em.persist(f1);
 		em.persist(m1);
 		em.persist(m2);
+		
+		
+	
+		
 		
 		
 		//insert p1

@@ -1,4 +1,4 @@
-package dao;
+package dao.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,15 +8,15 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import dao.IDAOVisite;
 import model.Medecin;
 import model.Patient;
 import model.Visite;
 
-public class DAOVisite implements IDAO<Visite, Integer> {
+public class DAOVisiteJDBC implements IDAOVisite{
 
-    DAOCompte daoCompte = new DAOCompte();
-    DAOPatient daoPatient = new DAOPatient();
-
+    DAOCompteJDBC daoCompte = new DAOCompteJDBC();
+    DAOPatientJDBC daoPatient = new DAOPatientJDBC();
 
 	@Override
 	public Visite findById(Integer id) {
@@ -114,21 +114,30 @@ public class DAOVisite implements IDAO<Visite, Integer> {
 	}
 
 	@Override
-	public Visite insert(Visite v) {
+	public Visite save(Visite v) {
 
         try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(urlBdd, loginBdd, passwordBdd);
-			PreparedStatement ps = conn.prepareStatement("INSERT INTO visite (id_patient, id_medecin, prix, salle, date_visite) VALUES (?,?,?,?,?)");
-			ps.setInt(1,v.getPatient().getId());
-            ps.setInt(2,v.getMedecin().getId());
-            ps.setDouble(3,v.getPrix());
-            ps.setInt(4,v.getSalle());
-            ps.setString(5,v.getDateVisite().toString());
+			
+			if(v.getId()==null) 
+			{
+				PreparedStatement ps = conn.prepareStatement("INSERT INTO visite (id_patient, id_medecin, prix, salle, date_visite) VALUES (?,?,?,?,?)");
+				ps.setInt(1,v.getPatient().getId());
+	            ps.setInt(2,v.getMedecin().getId());
+	            ps.setDouble(3,v.getPrix());
+	            ps.setInt(4,v.getSalle());
+	            ps.setString(5,v.getDateVisite().toString());
 
-			ps.executeUpdate();
+				ps.executeUpdate();
 
-			ps.close();
+				ps.close();
+			}
+			
+			else 
+			{
+				
+			}
 			conn.close();
 
 		} catch (Exception e) {
@@ -138,11 +147,7 @@ public class DAOVisite implements IDAO<Visite, Integer> {
 		return v;
 	}
 
-	@Override
-	public void update(Visite v) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	@Override
 	public void delete(Integer id) {
