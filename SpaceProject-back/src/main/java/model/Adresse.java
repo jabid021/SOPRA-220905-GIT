@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 
 //crac
@@ -23,6 +25,7 @@ public class Adresse implements Serializable{
 	@Column(nullable = false,columnDefinition = "VARCHAR(10) default 'NULL'")
 	private String cp;
 	
+	@ManyToOne
 	@Column(nullable = false,columnDefinition = "INT(8) default 'NULL'")
 	private Pays pays;
 
