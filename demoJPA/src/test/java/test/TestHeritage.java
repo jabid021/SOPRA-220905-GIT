@@ -31,14 +31,12 @@ public class TestHeritage {
 		Blanc b1 = new Blanc(0,800,100,100);
 */
 
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("sopraJPA");
-		EntityManager em = emf.createEntityManager();
+		
 
-
-
+/*
 		List<Vehicule> vehicules = em.createQuery("from Avion").getResultList();
 		List<Animal> zoo = em.createQuery("from Animal").getResultList() ;
-		List<Animal> chocolats = em.createQuery("from Blanc").getResultList() ;
+		List<Animal> chocolats = em.createQuery("from Blanc").getResultList() ;*/
 
 
 
@@ -57,8 +55,8 @@ public class TestHeritage {
 */
 
 
-		em.close();
-		emf.close();
+	/*	em.close();
+		emf.close();*/
 
 	}
 

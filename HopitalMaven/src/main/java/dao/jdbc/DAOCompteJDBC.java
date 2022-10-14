@@ -1,19 +1,18 @@
-package dao;
+package dao.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import dao.IDAOCompte;
 import model.Compte;
 import model.Medecin;
-import model.Patient;
 import model.Secretaire;
 
-public class DAOCompte implements IDAO<Compte, Integer> {
+public class DAOCompteJDBC implements IDAOCompte {
 
 	@Override
 	public Compte findById(Integer id) {
@@ -76,31 +75,46 @@ public class DAOCompte implements IDAO<Compte, Integer> {
 	}
 
 	@Override
-	public Compte insert(Compte c) {
+	public Compte save(Compte c) {
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(urlBdd, loginBdd, passwordBdd);
 
-			if (c instanceof Medecin) {
+			if(c.getId()==null) 
+			{
+				if (c instanceof Medecin) {
 
-				PreparedStatement ps = conn.prepareStatement("INSERT INTO compte (login, password, type_compte) VALUES (?,?,?)");
+					PreparedStatement ps = conn.prepareStatement("INSERT INTO compte (login, password, type_compte) VALUES (?,?,?)");
+					ps.setString(1, c.getLogin());
+					ps.setString(2, c.getPassword());
+					ps.setString(3, "Medecin");
+
+					ps.executeUpdate();
+
+					ps.close();
+				} else if (c instanceof Secretaire) {
+					PreparedStatement ps = conn.prepareStatement("INSERT INTO compte (login, password, type_compte) VALUES (?,?,?)");
+					ps.setString(1, c.getLogin());
+					ps.setString(2, c.getPassword());
+					ps.setString(3, "Secretaire");
+
+					ps.executeUpdate();
+
+					ps.close();
+				}
+			}
+			else 
+			{
+				PreparedStatement ps = conn.prepareStatement("UPDATE compte SET login=?, password=?");
 				ps.setString(1, c.getLogin());
 				ps.setString(2, c.getPassword());
-				ps.setString(3, "Medecin");
 
 				ps.executeUpdate();
 
 				ps.close();
-			} else if (c instanceof Secretaire) {
-				PreparedStatement ps = conn.prepareStatement("INSERT INTO compte (login, password, type_compte) VALUES (?,?,?)");
-				ps.setString(1, c.getLogin());
-				ps.setString(2, c.getPassword());
-				ps.setString(3, "Secretaire");
 
-				ps.executeUpdate();
-
-				ps.close();
+				conn.close();
 			}
 			conn.close();
 
@@ -112,26 +126,7 @@ public class DAOCompte implements IDAO<Compte, Integer> {
 
 	}
 
-	@Override
-	public void update(Compte c) {
-
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection conn = DriverManager.getConnection(urlBdd, loginBdd, passwordBdd);
-			PreparedStatement ps = conn.prepareStatement("UPDATE compte SET login=?, password=?");
-			ps.setString(1, c.getLogin());
-			ps.setString(2, c.getPassword());
-
-			ps.executeUpdate();
-
-			ps.close();
-
-			conn.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	
 
 	@Override
 	public void delete(Integer id) {
