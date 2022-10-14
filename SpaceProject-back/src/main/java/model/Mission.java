@@ -5,21 +5,63 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name="mission")
 public class Mission  implements Serializable {
 	
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@Column(name="debut",nullable = false)
 	private LocalDate dateDebut;
+	
+	@Column(name="fin",nullable = false)
 	private LocalDate dateFin;
+	
+	@Column(nullable = false,length = 30)
 	private String objectif;
+	
+	
 	private String description;
+	
+	@ManyToOne
+	@JoinColumn(name="pays",nullable = false)
 	private Pays pays;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(columnDefinition = "ENUM('Prevu', 'EnCours', 'Retarde', 'Termine', 'Annule')")
 	private Statut statut;
+	
+	@ManyToOne
+	@JoinColumn(name="planete",nullable = false)
 	private Planete planete;
+	
+	@ManyToOne
+	@JoinColumn(name="vaisseau")
 	private Vaisseau vaisseau;
+	
+	@OneToMany(mappedBy = "mission")
 	private List<Astronaute> astronautes =new ArrayList();
 		
 	
-	
+	public Mission() {
+	}
 	
 
 
