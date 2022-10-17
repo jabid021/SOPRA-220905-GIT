@@ -6,19 +6,23 @@ table {
 }
 
 thead th:nth-child(1) {
-  width: 30%;
+  width: 10%;
 }
 
 thead th:nth-child(2) {
-  width: 20%;
-}
-
-thead th:nth-child(3) {
   width: 15%;
 }
 
+thead th:nth-child(3) {
+  width: 25%;
+}
+
 thead th:nth-child(4) {
-  width: 35%;
+  width: 25%;
+}
+
+thead th:nth-child(5) {
+  width: 25%;
 }
 
 th, td {
@@ -73,7 +77,8 @@ tbody tr {
 
 caption {
   font-family: 'Rock Salt', cursive;
-  padding: 20px;
+  font-size: 30px;
+  padding: 30px;
   font-style: italic;
   color: #666;
   text-align: right;
