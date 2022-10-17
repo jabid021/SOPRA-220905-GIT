@@ -1,3 +1,7 @@
+<style>
+body{background-image:url("img/canard.jpg");background-repeat:no-repeat; background-position: center;}
+</style>
+
 <!--
 
 /saisie text => input text
@@ -9,56 +13,114 @@ envoyer des fichiers => input type file
 
 
 
-liste deroulante => select
-case à cocher unique / multiple => checkbox / radio
+/liste deroulante => select
+/case à cocher unique / multiple => checkbox / radio
 bloc de texte => textarea
-button
+/button
 
 -->
 
 <h1 align="center">Inscription</h1>
+<button>Click</button>
 
 <form>
+<fieldset>
+  <legend>Connexion</legend>
+  <table>
+    <tr>
+      <td>Login</td><td><input value="admin" type="text"></td>
+    </tr>
 
-<table align="center">
+    <tr>
+      <td>Password :</td> <td><input type="password"></td>
+    </tr>
 
+    <tr>
+      <td>Tel : </td><td><input placeholder="Saisir votre numero" type="tel"></td>
+    </tr>
 
-<tr>
-  <td>Login</td><td><input type="text"></td>
-</tr>
+    <tr>
+      <td>Email : </td><td><input type="email"></td>
+    </tr>
 
-<tr>
-  <td>Password : <td><input type="password"></td>
-</tr>
-
-<tr>
-  <td>Tel : <td><input type="tel"></td>
-</tr>
-
-<tr>
-  <td>Email : <td><input type="email"></td>
-</tr>
-
-<tr>
-  <td>Age : <td><input type="number"></td>
-</tr>
-
-<tr>
-  <td>Naissance : <td><input type="date"></td>
-</tr>
-
-<tr>
-  <td>Heure naissance : <td><input type="time"></td>
-</tr>
-
-<tr>
-  <td>Semaine naissance : <td><input type="week"></td>
-</tr>
+    <tr>
+      <td>Age :</td> <td><input type="number"></td>
+    </tr>
 
 
-<tr><td><input type="submit"><td></tr>
+  </table>
+</fieldset>
+
+<fieldset>
+
+    <legend>Infos naissance</legend>
+<table>
+
+  <tr>
+    <td>Naissance : </td><td><input type="date"></td>
+  </tr>
+
+  <tr>
+    <td>Heure naissance : </td><td><input type="time" value="08:56"></td>
+  </tr>
+
+  <tr>
+    <td>Semaine naissance : </td><td><input type="week"></td>
+  </tr>
+
+  <tr>
+    <td>Semaine naissance :</td> <td><input type="week"></td>
+  </tr>
 
 
 </table>
+</fieldset>
 
+<fieldset>
+
+    <legend>Complementaires</legend>
+<table >
+
+<tr>
+  <td>Civilite</td>
+  <td>
+  Homme  <input type="radio">  Femme <input type="radio"> NB <input type="radio">
+  </td>
+</tr>
+
+
+<tr>
+  <td>Langages</td>
+  <td>
+  Java  <input type="checkbox">  SQL <input type="checkbox"> HTML <input type="checkbox">
+  </td>
+</tr>
+
+
+<tr>
+  <td>OS</td>
+  <td>
+    <select>
+      <optgroup label="Payant">
+          <option>Mac</option>
+          <option>Windows</option>
+        </optgroup>
+        <optgroup label="Libre">
+            <option>Linux</option>
+      </optgroup>
+    </select>
+  </td>
+</tr>
+
+<tr>
+  <td>Evaluation</td>
+  <td><textarea placeholder="Saisir votre evaluation" rows="4" cols="40"></textarea></td>
+  </tr>
+
+
+<tr><td><input type="submit" value="Envoyer"><input type="reset"></td></tr>
+
+
+</table>
+</fieldset>
 </form>
