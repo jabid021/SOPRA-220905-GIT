@@ -95,7 +95,7 @@ public class DAOMission implements IDAOMission{
 	{
 		EntityManager em = Context.getSingleton().getEmf().createEntityManager();
 
-		List<Mission> s = em.createQuery("SELECT m from Mission m join fetch m.astronautes").getResultList();
+		List<Mission> s = em.createQuery("SELECT distinct m from Mission m left join fetch m.astronautes where m.id=:id").setParameter("id", id).getResultList();
 
 		em.close();
 
