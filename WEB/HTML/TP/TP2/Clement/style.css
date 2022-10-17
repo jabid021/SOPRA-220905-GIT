@@ -60,7 +60,7 @@ thead, tfoot {
 }
 
 thead th, tfoot th, tfoot td {
-  background: linear-gradient(to bottom, white, grey);
+  background: linear-gradient(to bottom, white, #B8F8C2);
   border: 3px solid black;
 }
 tbody tr:nth-child(odd) {
@@ -68,7 +68,7 @@ tbody tr:nth-child(odd) {
 }
 
 tbody tr:nth-child(even) {
-  background-color: grey;
+  background-color: #B8F8C2;
 }
 
 tbody tr {
@@ -88,4 +88,9 @@ caption {
 img {
   height: 300px;
   width: auto;
+}
+
+iframe {
+  width: auto;
+  height: 300px;
 }
