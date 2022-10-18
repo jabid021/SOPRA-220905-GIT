@@ -19,24 +19,38 @@ bloc de texte => textarea
 /button
 
 -->
-
 <h1 align="center">Inscription</h1>
 <button>Click</button>
 
-<form>
+<form action="pageCible.html" method="POST" enctype="multipart/form-data">
 <fieldset>
   <legend>Connexion</legend>
+
   <table>
+
     <tr>
-      <td>Login</td><td><input value="admin" type="text"></td>
+      <td>ID</td><td><input name="id" readonly value="1" type="text"></td>
     </tr>
 
     <tr>
-      <td>Password :</td> <td><input type="password"></td>
+      <td>ID</td><td><input disabled value="1" type="text"></td>
+    </tr>
+
+
+      <input value="1" name="id2" type="hidden">
+
+
+
+    <tr>
+      <td>Login *</td><td><input autofocus required value="admin" name="login" maxlength="8" minlength="2"  size="30" type="text"></td>
     </tr>
 
     <tr>
-      <td>Tel : </td><td><input placeholder="Saisir votre numero" type="tel"></td>
+      <td>Password :</td> <td><input required type="text" pattern="[A-z 0-9 !@#$&*]{4,8}" title="4 à 8 lettres" value="toto123"></td>
+    </tr>
+
+    <tr>
+      <td>Tel : </td><td><input placeholder="Saisir votre numero" pattern="[0-9]{4}" type="tel"></td>
     </tr>
 
     <tr>
@@ -44,9 +58,21 @@ bloc de texte => textarea
     </tr>
 
     <tr>
-      <td>Age :</td> <td><input type="number"></td>
+      <td><label for="age">Age :</label></td> <td><input id="age" min="0" max="40" type="number" ></td>
     </tr>
 
+
+    <tr>
+      <td>Prix :</td> <td><input min="0" max="40" type="number"  step="0.01" ></td>
+    </tr>
+
+    <tr>
+      <td>Note :</td> <td><input name="note" min="0" max="10" type="range"></td>
+    </tr>
+
+    <tr>
+      <td>CV :</td> <td><input type="file" name="cv"></td>
+    </tr>
 
   </table>
 </fieldset>
@@ -57,19 +83,15 @@ bloc de texte => textarea
 <table>
 
   <tr>
-    <td>Naissance : </td><td><input type="date"></td>
+    <td>Naissance : </td><td><input required min="2000-01-01" max="2002-12-31" value="2001-01-01" type="date"></td>
   </tr>
 
   <tr>
-    <td>Heure naissance : </td><td><input type="time" value="08:56"></td>
+    <td>Heure naissance : </td><td><input  min="08:00" step="1800" max="19:00" type="time" value="08:00"></td>
   </tr>
 
   <tr>
     <td>Semaine naissance : </td><td><input type="week"></td>
-  </tr>
-
-  <tr>
-    <td>Semaine naissance :</td> <td><input type="week"></td>
   </tr>
 
 
@@ -79,12 +101,12 @@ bloc de texte => textarea
 <fieldset>
 
     <legend>Complementaires</legend>
-<table >
+<table>
 
 <tr>
   <td>Civilite</td>
   <td>
-  Homme  <input type="radio">  Femme <input type="radio"> NB <input type="radio">
+  <label for="homme">Homme</label>  <input id="homme" checked name="civ" value="homme" type="radio">    <label for="femme">Femme</label> <input name="civ" id="femme" value="femme" type="radio">   <label for="nb">NB</label> <input id="nb" value="nb" name="civ" type="radio">
   </td>
 </tr>
 
@@ -92,9 +114,17 @@ bloc de texte => textarea
 <tr>
   <td>Langages</td>
   <td>
-  Java  <input type="checkbox">  SQL <input type="checkbox"> HTML <input type="checkbox">
+    <label for="java">Java</label>  <input id="java" name="java" type="checkbox">  SQL <input name="sql"  type="checkbox"> HTML <input  checked name="html" type="checkbox">
   </td>
 </tr>
+
+<tr>
+  <td>Couleur</td>
+  <td>
+  <input type="color">
+  </td>
+</tr>
+
 
 
 <tr>
@@ -103,7 +133,7 @@ bloc de texte => textarea
     <select>
       <optgroup label="Payant">
           <option>Mac</option>
-          <option>Windows</option>
+          <option selected>Windows</option>
         </optgroup>
         <optgroup label="Libre">
             <option>Linux</option>
@@ -124,3 +154,12 @@ bloc de texte => textarea
 </table>
 </fieldset>
 </form>
+
+
+
+
+<audio src="assets/audio/audio.mp3" controls></audio>
+<video width="350" heigth="250" src="assets/video/video.mp4" controls poster="assets/video/ds.jfif"></video>
+
+
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
