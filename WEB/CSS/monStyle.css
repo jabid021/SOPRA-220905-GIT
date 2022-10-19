@@ -1,0 +1,43 @@
+
+  @media(max-width : 576px)
+  {
+    body{background-color:cyan;}
+
+    #nav
+    {
+      display:none;
+    }
+
+  }
+
+
+  @media(min-width : 576px ) and (max-width : 992px)
+  {
+    body{background-color:green;}
+
+    #nav
+    {
+      display:none;
+    }
+
+  }
+  @media(min-width : 992px)
+  {
+    body{background-color:orange;}
+
+    #navMobile
+    {
+      display:none;
+    }
+    #nav{margin-left: 45%;}
+
+    #content
+    {
+      height:800px;
+      overflow-y:scroll;
+    }
+  }
+  #content
+  {
+    background-color:grey;
+  }
