@@ -1,0 +1,170 @@
+<script charset="utf-8">
+
+//var login => static login
+//let login => variable dispo uniquement dans la fonction (scope)
+
+var login="toto";
+var nb = 12;
+
+var notes = [15,9,2,4,27,35,8];
+var zoom = ["Jordan","John","Toto","Titi"];
+//var test = ["Jordan",15.8,true,[],"test",8];
+
+
+var test= 12;
+console.log(test);
+
+
+var personne1 = new Object();
+personne1.prenom="Jordan";
+personne1.nom="Abid";
+//console.log(personne1);
+
+
+var personne2 = {"prenom":"John","nom":"Doe","age":42};
+//console.log(personne2);
+
+var zoom2 = [personne1,personne2];
+/*var zoom2 = [
+      {"prenom":"Jordan","nom":"Abid"},
+      {"prenom":"John","nom":"Doe","age":42}
+];*/
+
+for(p of zoom2)
+{
+  console.log(p);
+  console.log(p.prenom);
+  console.log(p.age);
+}
+
+console.log(personne1["prenom"]);
+
+
+var info = prompt("Quelle info ?");
+console.log("Info personne 2 : "+personne2[info]);
+
+/*console.log(notes);
+
+
+
+console.log(notes.length);
+
+console.log("2e personne du tableau : "+zoom[1]);
+
+zoom[4] = "Samuel";
+zoom[zoom.length] = "Anastasia";
+
+//Ajouter à la fin du tableau
+zoom.push("Matthieu");
+
+//Ajouter au début du tableau
+zoom.unshift("Oumaima");
+
+
+//Retire le 1er element du tableau
+//zoom.shift();
+
+//Retire le dernier element du tableau
+//var lastPersonne=zoom.pop();
+//console.log("Le dernier element etait : "+lastPersonne);
+
+zoom.sort();
+zoom.reverse();
+
+notes.sort(comparerNumber);
+//Trier le tableau selon la longueur des prenom
+zoom.sort(trierLong);
+
+//alert(zoom.join("-*-"));
+zoom[90]="???";
+zoom.length=8 ;
+console.log(zoom[90]);
+
+
+console.log(notes);
+console.log(zoom);
+
+console.log("LISTE DES PERSONNES : \n :")
+/*for(let i=0;i<zoom.length;i++)
+{
+  console.log(zoom[i]);
+}
+
+for(p in zoom)
+{
+  console.log(p + " - "+zoom[p]);
+}
+
+
+for(index in zoom)
+{
+  console.log(index + " - "+zoom[index]);
+}
+
+for(p of zoom)
+{
+  console.log(p);
+}
+
+*/
+function trierLong(mot1,mot2)
+{
+  return mot1.length - mot2.length;
+}
+
+function comparerNumber(a,b)
+{
+  return a-b;
+}
+
+//console.log(test);
+
+//saisie=prompt("Saisir un nombre");
+//carre(saisie);
+
+
+
+/*var verif = prompt("Saisir le mot test !");
+
+while(verif.toLowerCase()!="test")
+{
+  verif = prompt("Saisir le mot test SVP !");
+}
+
+do
+{
+  verif2 = prompt("Saisir le mot test !");
+}while(verif2!="test");
+
+
+
+for(let i=1;i<=10;i++)
+{
+  console.log("HELLO "+i);
+}
+
+*/
+
+
+function carre(x)
+{
+  console.log(x*x);
+  if(x>10){console.log("x est plus grand que 10");}
+  else{console.log("x est plus petit ou = à 10");}
+
+
+  console.log((x>10)?"x est plus grand que 10" : "x est plus petit ou = à 10");
+
+  switch(x)
+  {
+    case 5 : console.log("x = 5");break;
+    case 8 : console.log("x=8");break;
+    default : console.log("x="+x);break;
+  }
+
+}
+
+
+
+
+</script>
