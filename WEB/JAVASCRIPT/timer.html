@@ -1,0 +1,39 @@
+<h1 id="message">Ce paragraphe s'autodetruira dans 5secondes...</h1>
+
+<p id="sapin">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+
+
+<script>
+
+var monTimer = setTimeout(exploser,5000);
+//clearTimeout(monTimer);
+
+var color="red";
+var monInterval=setInterval(noel,200);
+
+
+
+setTimeout(stopSapin,5000);
+
+
+function exploser()
+{
+  message.style.color="red";
+  message.innerHTML="BOUM!";
+  setTimeout(function(){message.innerHTML="";},2000);
+}
+
+function noel()
+{
+  if(color=="red"){color="green";}
+  else{color="red";}
+
+  sapin.style.color=color;
+}
+
+function stopSapin()
+{
+  clearInterval(monInterval);
+}
+</script>
