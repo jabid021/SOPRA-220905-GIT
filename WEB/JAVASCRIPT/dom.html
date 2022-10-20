@@ -1,0 +1,93 @@
+
+
+<title>LE DOM</title>
+
+<h1 id="titrePrinci" monAttribut="valeur">LE DOM ! (Document Object Model)</h1>
+<h2 id="titre2">Titre à remplacer</h2>
+
+<div id="baliseVide"></div>
+
+<p id="paragPrinci">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p class="elementImportant">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<h2 class="elementImportant">c'etait pas drole</h2>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+
+<input type="text" placeholder="login" id="idLogin">
+<input type="password" value="password123" id="password">
+<input id="btnForm" type="submit" value="Se connecter">
+
+<script>
+
+  console.log(document.title);
+  document.title="Nouveau TITRE de la page";
+  pointeurParTag();
+
+
+  function pointeurParId()
+  {
+
+    var balise = document.getElementById("titrePrinci");
+
+    console.log(balise.innerHTML);
+    balise.innerHTML="NOUVEAU TITRE";
+    baliseVide.innerHTML="<ul><li>Item1<img src='../HTML/img/ajc.png'></li></ul>";
+
+
+    //var prop = prompt("Changer quoi ?");
+    //var value = prompt("Quelle value ?");
+
+    balise.style.color="blue";
+    balise.style.backgroundColor="orange";
+    balise.style.fontSize="45px";
+
+    balise.style.setProperty("color","red");
+    balise.style.setProperty("background-color","cyan");
+    //balise.style[prop]=value;
+    //balise.style.setProperty(prop,value);
+
+    //EN JS, on peut remplacer document.getElementById("x") directement par x.innerHTML
+    //titrePrinci.innerHTML="VOILA";
+
+    console.log(balise.getAttribute("monAttribut"));
+    balise.setAttribute("monAttribut","newValeur");
+    balise.setAttribute("attribut2","valeur2");
+
+    btnForm.setAttribute("disabled",true);
+    btnForm.removeAttribute("disabled");
+    btnForm.disabled=true;
+    //btnForm.disabled=false;
+
+    baliseVide.innerHTML=paragPrinci.innerHTML;
+  }
+
+
+  function pointeurParClass()
+  {
+    var balises = document.getElementsByClassName("elementImportant");
+
+    balises[0].style.backgroundColor="cyan";
+    for(b of balises)
+    {
+      b.style.color="red";
+    }
+  }
+
+  function pointeurParTag()
+  {
+    var balises = document.getElementsByTagName("h2");
+    for(b of balises)
+    {
+      b.innerHTML="ZOG ZOG";
+    }
+
+  }
+
+
+
+
+
+
+
+
+</script>

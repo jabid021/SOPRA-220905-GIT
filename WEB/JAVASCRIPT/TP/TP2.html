@@ -1,0 +1,36 @@
+<script>
+
+var p1 = {"nom":"France","capitale":"Paris"};
+var p2 = {"nom":"Angleterre","capitale":"Londres"};
+var p3 = {"nom":"Espagne","capitale":"Madrid"};
+var p4 = {"nom":"Portugal","capitale":"Lisbonne"};
+
+var pays = [p1,p2,p3,p4];
+
+var score=0;
+var total=pays.length;
+
+
+for(index in pays)
+{
+  let question=parseInt(index)+1;
+  let reponse = prompt("Quelle est la capitale du pays suivant : "+pays[index].nom+" ("+question+"/"+total+")");
+  if(reponse==pays[index].capitale)
+  {
+    score++;
+    alert("Bonne réponse !");
+  }
+  else
+  {
+    alert("Mauvaise réponse !");
+  }
+}
+console.log("Fin de la partie, votre score est de : "+score+"/"+total);
+
+
+
+
+
+
+
+</script>
