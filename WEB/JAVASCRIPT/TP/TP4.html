@@ -1,4 +1,10 @@
+<style>
+#horloge{display:none;}
+</style>
 
+
+<input type="button" value="Play" id="btnPlay">
+<input type="button" value="Pause" id="btnPause">
 
 <h1 id="horloge">00:00</h1>
 
@@ -8,12 +14,26 @@
   var minute=0;
   var seconde=0;
 
+  setInterval(modifHorloge,1000);
+
+
+  function modifHorloge()
+  {
+    seconde++;
+    if(seconde==60)
+    {
+      seconde=0;
+      minute++;
+    }
+    let minAffiche=(minute<10)?"0"+minute:minute;
+    let secondeAffiche=(seconde<10)?"0"+seconde:seconde;
+
+    horloge.innerHTML=minAffiche+":"+secondeAffiche;
+  }
 
 
 
 
-var minAffiche=(minute<10)?"0"+minute:minute;
-var secondeAffiche=(seconde<10)?"0"+seconde:seconde;
 
 
 </script>

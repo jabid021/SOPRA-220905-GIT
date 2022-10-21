@@ -1,0 +1,73 @@
+<p  onclick="alert('Click sur parag')"   id="parag">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+
+<p id="parag2"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+
+<input type="text" id="login">
+
+
+
+<input type="button" id="btnValidate" value="Valider">
+<input type="button" id="btnShow" disabled value="Afficher">
+<input type="button" id="btnHide" value="Masquer">
+
+
+
+<script>
+/*
+Events souris : click, dblclick, mouseover,mouseout,mousedown,mouseup,mousemove
+Events clavier : keypress,keyup,keydown
+*/
+
+parag.onmouseover = changeColor;
+parag.onmouseout=changeColor;
+login.ondblclick=function(){console.log("dblclick");}
+parag2.onmousedown=function(){console.log("mousedown");}
+parag2.onmouseup=function(){console.log("mouseup");}
+//parag2.onmousemove=function(){console.log("mousemove");}
+
+btnHide.onclick=function()
+{
+  parag2.style.display="none";
+  btnShow.disabled=false;
+  btnHide.disabled=true;
+}
+
+
+btnShow.onclick=function()
+{
+  parag2.style.display="block";
+  btnShow.disabled=true;
+  btnHide.disabled=false;
+}
+
+
+
+
+  function changeColor(event)
+  {
+    //console.log(event);
+    //console.log(event.type);
+    if(event.type=="mouseover")
+    {
+      if(event.ctrlKey==true)
+      {
+          parag.style.color="blue";
+      }
+      else
+      {
+          parag.style.color="red";
+      }
+    }
+    else
+    {
+        parag.style.color="black";
+    }
+
+  }
+
+
+
+
+</script>
