@@ -8,7 +8,7 @@
 
 
 
-<input type="button" id="btnValidate" value="Valider">
+<input type="button" disabled id="btnValidate" value="Valider">
 <input type="button" id="btnShow" disabled value="Afficher">
 <input type="button" id="btnHide" value="Masquer">
 
@@ -26,6 +26,28 @@ login.ondblclick=function(){console.log("dblclick");}
 parag2.onmousedown=function(){console.log("mousedown");}
 parag2.onmouseup=function(){console.log("mouseup");}
 //parag2.onmousemove=function(){console.log("mousemove");}
+
+btnValidate.onclick=function()
+{
+  alert(login.value);
+}
+
+login.onkeyup=function(event)
+{
+  console.log(event.key);
+
+  if(login.value=="")
+  {
+    btnValidate.disabled=true;
+  }
+  else
+  {
+    btnValidate.disabled=false;
+  }
+}
+
+
+
 
 btnHide.onclick=function()
 {

@@ -4,18 +4,37 @@
 
 
 <input type="button" value="Play" id="btnPlay">
-<input type="button" value="Pause" id="btnPause">
+<input type="button" disabled value="Pause" id="btnPause">
 
 <h1 id="horloge">00:00</h1>
 
 
 <script>
 
+  btnPlay.onclick=lancer;
+  btnPause.onclick=stopTimer;
+
+
   var minute=0;
   var seconde=0;
+  var timer;
 
-  setInterval(modifHorloge,1000);
 
+
+function lancer()
+{
+  horloge.style.display="block";
+  btnPlay.disabled=true;
+  btnPause.disabled=false;
+  timer=setInterval(modifHorloge,1000);
+}
+
+function stopTimer()
+{
+  btnPlay.disabled=false;
+  btnPause.disabled=true;
+  clearInterval(timer);
+}
 
   function modifHorloge()
   {
@@ -25,6 +44,7 @@
       seconde=0;
       minute++;
     }
+    console.log(seconde);
     let minAffiche=(minute<10)?"0"+minute:minute;
     let secondeAffiche=(seconde<10)?"0"+seconde:seconde;
 
