@@ -1,7 +1,9 @@
 package formationSpring.config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 import formationSpring.bean.Guitare;
 import formationSpring.bean.Guitariste;
@@ -10,6 +12,8 @@ import formationSpring.bean.Musicien;
 import formationSpring.bean.Pianiste;
 
 @Configuration
+@ComponentScan("formationSpring.bean.aspect")
+@EnableAspectJAutoProxy
 public class AppConfig {
 
 	@Bean
