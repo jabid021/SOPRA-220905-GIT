@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 //annotation pour la gestion des transactions avec notre transactionManager
 @EnableTransactionManagement
-@ComponentScan("dao.jpa")
+@ComponentScan({"service"})
 //activation des repository de spring-data-jpa
 //definition de l'emplacement des interfaces
 @EnableJpaRepositories(basePackages = "repository")
