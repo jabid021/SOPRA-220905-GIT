@@ -24,7 +24,7 @@ public class Produit {
 	private String libelle;
 	
 	
-	@Column(name="price",columnDefinition = "DECIMAL(6,2)",nullable = false)
+	@Column(name="price",columnDefinition = "NUMERIC(6,2)",nullable = false)
 	private double prix;
 	
 	
