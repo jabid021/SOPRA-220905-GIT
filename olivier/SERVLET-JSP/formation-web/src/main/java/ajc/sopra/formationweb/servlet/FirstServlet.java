@@ -35,13 +35,15 @@ public class FirstServlet extends HttpServlet {
 		// getContextPath()=>le nom de deploiment du projet (pour l'instant c'est
 		// formation-web)
 
+		
+		String prenom=request.getParameter("prenom");
 		// @formatter:off
 		response.getWriter()
 					.append("<!DOCTYPE html>")
 					.append("<html>")
 					.append("<head><title>servlet</title></head>")
 					.append("<body>")
-					.append("<h1>hello de la servlet</h1>")
+					.append("<h1>hello "+prenom+"</h1>")
 					.append("</body>")
 					.append("</html>");
 		// @formatter:on
