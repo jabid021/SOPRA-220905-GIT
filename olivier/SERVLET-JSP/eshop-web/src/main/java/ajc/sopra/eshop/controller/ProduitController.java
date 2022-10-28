@@ -19,7 +19,7 @@ import ajc.sopra.eshop.service.ProduitService;
  * Servlet implementation class ProduitContrioller
  */
 @WebServlet("/produit")
-public class ProduitContrioller extends HttpServlet {
+public class ProduitController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private AnnotationConfigApplicationContext ctx;
@@ -27,7 +27,7 @@ public class ProduitContrioller extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ProduitContrioller() {
+	public ProduitController() {
 		super();
 	}
 

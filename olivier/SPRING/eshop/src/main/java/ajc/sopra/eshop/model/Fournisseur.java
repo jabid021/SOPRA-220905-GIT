@@ -17,13 +17,20 @@ public class Fournisseur extends Personne{
 	
 	
 	@OneToMany(mappedBy = "fournisseur")
-	private transient List<Produit> produits;
+	private  List<Produit> produits;
 
 	public Fournisseur() {
 	}
 	
 	public Fournisseur(String nom, String prenom, String societe) {
 		super(nom, prenom);
+		this.societe = societe;
+	}
+
+	
+	
+	public Fournisseur(Integer id, String nom, String prenom, Adresse adresse, String societe) {
+		super(id, nom, prenom, adresse);
 		this.societe = societe;
 	}
 

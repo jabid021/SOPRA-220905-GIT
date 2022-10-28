@@ -14,24 +14,22 @@ import javax.persistence.Table;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="type_personne")
-@Table(name="person")
+@DiscriminatorColumn(name = "type_personne")
+@Table(name = "person")
 
 public abstract class Personne {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Integer id;
-	
-	@Column(name="lastname",length=30,nullable = false)
+
+	@Column(name = "lastname", length = 30, nullable = false)
 	protected String nom;
-	@Column(name="firstname",length=30,nullable = false)
+	@Column(name = "firstname", length = 30, nullable = false)
 	protected String prenom;
-	
+
 	@Embedded
 	protected Adresse adresse;
-
-
 
 	public Personne() {
 
@@ -42,37 +40,37 @@ public abstract class Personne {
 		this.prenom = prenom;
 	}
 
+	public Personne(Integer id, String nom, String prenom, Adresse adresse) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresse = adresse;
+	}
 
 	public Integer getId() {
 		return id;
 	}
 
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 
 	public String getNom() {
 		return nom;
 	}
 
-
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-
 
 	public String getPrenom() {
 		return prenom;
 	}
 
-
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-
-	
 
 	public Adresse getAdresse() {
 		return adresse;
@@ -86,6 +84,5 @@ public abstract class Personne {
 	public String toString() {
 		return "Personne [id=" + id + ", nom=" + nom + ", prenom=" + prenom + "]";
 	}
-
 
 }
