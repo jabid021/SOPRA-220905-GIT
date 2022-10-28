@@ -14,34 +14,53 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="product")
+@Table(name = "product")
 public class Produit {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@Column(name="label",length=30,nullable = false)
+	@Column(name = "label", length = 30, nullable = false)
 	private String libelle;
-	
-	
-	@Column(name="price",columnDefinition = "NUMERIC(6,2)",nullable = false)
+
+	@Column(name = "price", columnDefinition = "NUMERIC(6,2)", nullable = false)
 	private double prix;
-	
-	
+
 	@ManyToOne
 	@JoinColumn(name = "vendeur")
 	private Fournisseur fournisseur;
 
 	@OneToMany(mappedBy = "produit")
 	private List<Achat> ventes;
-	
+
+	public Produit(Integer id, String libelle, double prix, Fournisseur fournisseur) {
+		super();
+		this.id = id;
+		this.libelle = libelle;
+		this.prix = prix;
+		this.fournisseur = fournisseur;
+	}
+
+	public Produit(Integer id, String libelle, double prix) {
+		super();
+		this.id = id;
+		this.libelle = libelle;
+		this.prix = prix;
+	}
+
+	public Produit(String libelle, double prix) {
+		super();
+		this.libelle = libelle;
+		this.prix = prix;
+	}
+
 	public Produit() {
 	}
 
-	public Produit(String libelle, double prix,Fournisseur fournisseur) {
+	public Produit(String libelle, double prix, Fournisseur fournisseur) {
 		this.libelle = libelle;
 		this.prix = prix;
-		this.fournisseur=fournisseur;
+		this.fournisseur = fournisseur;
 	}
 
 	public Integer getId() {
@@ -67,9 +86,6 @@ public class Produit {
 	public void setPrix(double prix) {
 		this.prix = prix;
 	}
-	
-	
-	
 
 	public List<Achat> getVentes() {
 		return ventes;
@@ -91,10 +107,5 @@ public class Produit {
 	public String toString() {
 		return "Produit [id=" + id + ", libelle=" + libelle + ", prix=" + prix + ", fournisseur=" + fournisseur + "]";
 	}
-
-	
-
-
-
 
 }
