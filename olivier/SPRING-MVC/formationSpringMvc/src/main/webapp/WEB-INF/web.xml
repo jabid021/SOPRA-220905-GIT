@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	version="4.0">
+	<!-- definition de la servlet de spring On a besoin de 2 balises: <servlet></servlet> 
+		=>definition de la classe java à instancier pour la servlet <servlet-mapping></servlet-mapping> 
+		=>le mapping (url) associer à la servlet -->
+	<servlet>
+		<!-- nom de la servlet sans importance -->
+		<servlet-name>dispatcher</servlet-name>
+		<!-- la classe a instancier -->
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<!-- parametre d'initialisation de la servlet pour configuration de spring -->
+		<init-param>
+			<!-- nom du parametre -->
+			<!-- definition du mode de configuration du projet (XML/java) -->
+			<param-name>contextClass</param-name>
+			<!-- ici on utilise une config en mode java (classe avec @Configuration) -->
+			<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+		</init-param>
+		<init-param>
+			<!-- si configuration en mode java on doit donner en plus la classe de configuration -->
+			<param-name>contextConfigLocation</param-name>
+			<param-value>ajc.sopra.formationSpringMvc.configuration.WebConfig</param-value>
+		</init-param>
+		<!-- lancement de la servlet de spring au demarrage du serveur -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<!-- le servlet-name doit correspondre au servlet-name de la balise servlet -->
+		<servlet-name>dispatcher</servlet-name>
+		<!-- definition de l'url pour arriver sur la servlet=>/ =>toutes les url -->
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+
+</web-app>
