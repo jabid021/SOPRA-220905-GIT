@@ -3,12 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<base href="${pageContext.request.contextPath}/">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-<h1>hello world</h1>
-<img alt="" src="assets/images/image.jpeg">
+ <h1>
+ 	Bonjour ${prenom} ${nom}
+ </h1>
 </body>
 </html>

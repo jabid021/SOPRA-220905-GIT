@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class DemoController {
 
 	//url pour arriver sur la methode
-	@RequestMapping("/hello")
+	@RequestMapping("/maison/hello")
 	//le String en retour => vue
 	public String hello() {
 		return "hello";
