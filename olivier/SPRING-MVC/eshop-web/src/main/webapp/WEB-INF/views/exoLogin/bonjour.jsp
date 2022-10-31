@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
- <h1>
- 	Bonjour prenom:${personne.prenom} nom:${personne.nom} societe:${personne.societe.nom }
- </h1>
+<h1> bonjour ${login}</h1>
 </body>
 </html>
