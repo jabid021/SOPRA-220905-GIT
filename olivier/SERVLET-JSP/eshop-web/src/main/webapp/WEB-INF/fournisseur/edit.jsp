@@ -15,9 +15,6 @@
 </head>
 <body>
 	<div class="container">
-		<c:if test="${erreur !=null}">
-			<div class="alert alert-danger">${erreur }</div>
-		</c:if>
 		<form method="post" action="fournisseur">
 			<input type="hidden" name="q" value="save">
 			<div class="form-group">

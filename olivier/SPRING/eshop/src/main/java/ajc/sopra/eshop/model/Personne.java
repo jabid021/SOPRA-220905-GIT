@@ -9,8 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -22,9 +22,10 @@ public abstract class Personne {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Integer id;
-
+	@NotBlank
 	@Column(name = "lastname", length = 30, nullable = false)
 	protected String nom;
+	@NotBlank(message = "mon message")
 	@Column(name = "firstname", length = 30, nullable = false)
 	protected String prenom;
 
