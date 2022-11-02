@@ -1,8 +1,11 @@
 package ajc.sopra.eshop.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ajc.sopra.eshop.model.Produit;
+import ajc.sopra.eshop.service.FournisseurService;
 import ajc.sopra.eshop.service.ProduitService;
 
 @Controller
@@ -18,6 +22,8 @@ public class ProduitController {
 
 	@Autowired
 	private ProduitService produitSrv;
+	@Autowired
+	private FournisseurService fournisseurSrv;
 
 	@GetMapping("")
 	public String list(Model model) {
@@ -37,6 +43,7 @@ public class ProduitController {
 
 	private String goForm(Produit produit, Model model) {
 		model.addAttribute("produit", produit);
+		model.addAttribute("fournisseurs", fournisseurSrv.findAll());
 		return "produit/edit";
 	}
 
@@ -47,7 +54,10 @@ public class ProduitController {
 	}
 
 	@PostMapping("")
-	public String save(@ModelAttribute Produit produit, Model model) {
+	public String save(@Valid @ModelAttribute Produit produit, BindingResult br, Model model) {
+		if (br.hasErrors()) {
+			return goForm(produit, model);
+		}
 		if (produit.getId() == null) {
 			produitSrv.create(produit);
 		} else {

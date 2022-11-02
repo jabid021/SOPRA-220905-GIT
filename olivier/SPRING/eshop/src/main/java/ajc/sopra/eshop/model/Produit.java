@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "product")
@@ -20,9 +22,10 @@ public class Produit {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@NotBlank
 	@Column(name = "label", length = 30, nullable = false)
 	private String libelle;
-
+	@DecimalMin("0.5")
 	@Column(name = "price", columnDefinition = "NUMERIC(6,2)", nullable = false)
 	private double prix;
 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,29 +11,49 @@
 	rel="stylesheet"
 	integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
 	crossorigin="anonymous">
-<title>Insert title here</title>
+<title>eshop</title>
 </head>
 <body>
 	<div class="container">
-		<form method="post" action="produit">
+		<form:form method="post" action="produit" modelAttribute="produit">
 			<div class="form-group">
-				<label for="id">id:</label> <input class="form-control" id="id"
-					name="id" readonly="readonly" value="${produit.id}"
-					placeholder="generer automatiquement">
+				<form:label path="id">id:</form:label>
+				<form:input path="id" readonly="true" cssClass="form-control"
+					placeholder="auto" />
 			</div>
 			<div class="form-group">
-				<label for="libelle">libelle:</label> <input class="form-control"
-					id="libelle" name="libelle" value="${produit.libelle}">
+				<form:label path="libelle">libelle:</form:label>
+				<form:input path="libelle" cssClass="form-control" />
+				<form:errors path="libelle" cssClass="alert alert-danger small"
+					element="div"></form:errors>
 			</div>
 			<div class="form-group">
-				<label for="prix">prix:</label> <input type="number"
-					class="form-control" id="prix" name="prix" value="${produit.prix}" step="0.1">
+				<form:label path="prix">prix:</form:label>
+				<form:input type="number" step="0.1" path="prix"
+					cssClass="form-control" />
+				<form:errors path="prix" cssClass="alert alert-danger small"
+					element="div"></form:errors>
+			</div>
+			<div class="form-group">
+				<form:label path="fournisseur">fournisseur:</form:label>
+				<%--
+				<form:select path=""
+					items="collection qui contient les donnees à mettre dans le select"
+					itemLabel="attribut d'un objet de la collection à mettre entre la balise option"
+					itemValue="attribut de l'objet de la collection =>value"></form:select>
+				<select name="nom du parametre qui recupere la valeur">
+					<option value="valeur a envoyer">a afficher</option>
+				</select>
+				--%>
+				<form:select cssClass="form-control" path="fournisseur.id" items="${fournisseurs}" itemValue="id" itemLabel="infos">
+				</form:select>
+				<form:errors path="fournisseur"></form:errors>
 			</div>
 			<div class="form-group">
 				<button type="submit" class="btn btn-outline-primary">enregistrer</button>
 				<a href="produit" class="btn btn-outline-warning">annuler</a>
 			</div>
-		</form>
+		</form:form>
 	</div>
 </body>
 </html>
