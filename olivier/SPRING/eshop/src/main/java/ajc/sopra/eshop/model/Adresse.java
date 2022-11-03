@@ -1,5 +1,7 @@
 package ajc.sopra.eshop.model;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
@@ -74,6 +76,26 @@ public class Adresse {
 	@Override
 	public String toString() {
 		return "Adresse [numero=" + numero + ", voie=" + voie + ", ville=" + ville + ", cp=" + cp + "]";
+	}
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(cp, numero, ville, voie);
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Adresse other = (Adresse) obj;
+		return Objects.equals(cp, other.cp) && Objects.equals(numero, other.numero)
+				&& Objects.equals(ville, other.ville) && Objects.equals(voie, other.voie);
 	}
 	
 	

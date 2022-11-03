@@ -12,27 +12,25 @@ import javax.persistence.OneToMany;
 @DiscriminatorValue("customer")
 public class Client extends Personne {
 
-	
 	private Integer age;
-	
-	@Column(name="birthdate")
+
+	@Column(name = "birthdate")
 	private LocalDate naissance;
-	
-	
-	/*@ManyToMany
-	@JoinTable(
-			name="achats",
-			joinColumns = @JoinColumn(name="acheteur"),
-			inverseJoinColumns = @JoinColumn(name="produit")
-			)
-	private List<Produit> achats = new ArrayList();*/
-	
-	@OneToMany(mappedBy="acheteur")
+
+	/*
+	 * @ManyToMany
+	 * 
+	 * @JoinTable( name="achats", joinColumns = @JoinColumn(name="acheteur"),
+	 * inverseJoinColumns = @JoinColumn(name="produit") ) private List<Produit>
+	 * achats = new ArrayList();
+	 */
+
+	@OneToMany(mappedBy = "acheteur")
 	private List<Achat> achats;
 
 	public Client() {
 	}
-	
+
 	public Client(String nom, String prenom, Integer age, LocalDate naissance) {
 		super(nom, prenom);
 		this.age = age;
@@ -54,9 +52,10 @@ public class Client extends Personne {
 	public void setNaissance(LocalDate naissance) {
 		this.naissance = naissance;
 	}
-	
-	
-	
+
+	public String getDetails() {
+		return getId() + " " + getPrenom() + " " + getNom();
+	}
 
 	public List<Achat> getAchats() {
 		return achats;
@@ -72,11 +71,4 @@ public class Client extends Personne {
 				+ ", naissance=" + naissance + ", achats=" + achats + "]";
 	}
 
-	
-	
-	
-	
-	
-	
-	
 }

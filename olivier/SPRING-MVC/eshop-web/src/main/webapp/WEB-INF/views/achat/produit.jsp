@@ -16,29 +16,34 @@
 </head>
 <body>
 	<div class="container">
+		<h1>nos produits</h1>
 		<table class="table">
 			<thead>
 				<tr>
-					<th>id:</th>
-					<th>nom:</th>
-					<th>prix</th>
+					<th>produit:</th>
+					<th>prix:</th>
+					<th></th>
 					<th></th>
 					<th></th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="p" items="${produits}">
-				<tr>
-					<td>${p.getId()}</td>
-					<td>${p.libelle}</td>
-					<td>${p.prix}</td>
-					<td><a href="produit/edit?id=${p.id}" class="btn btn-outline-primary">editer</a></td>
-					<td><a href="produit/delete?id=${p.id}" class="btn btn-outline-danger">supprimer</a></td>
-				</tr>
+				<c:forEach var="produit" items="${produits}">
+					<tr>
+						<td>${produit.libelle}</td>
+						<td>${produit.prix}</td>
+						<td><a href="achat/panier/add/${produit.id}"
+							class="btn btn-link">ajouter au panier</a></td>
+						<td>${panier.get(produit)}</td>
+						<td><c:if test="${panier.containsKey(produit)}">
+								<a href="achat/panier/delete/${produit.id}" class="btn btn-link">retirer
+									du panier</a>
+							</c:if></td>
+					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		<a href="produit/add" class="btn btn-link">nouveau produit</a>
+		<a href="achat/panier/validate" class="btn btn-link">valider</a>
 	</div>
 </body>
 </html>
