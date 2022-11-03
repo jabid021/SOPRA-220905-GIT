@@ -88,7 +88,6 @@ public class AchatController {
 		});
 		achatSrv.saveAll(achats);
 		session.invalidate();
-		System.out.println("done");
 		return "home";
 
 	}

@@ -10,7 +10,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("ajc.sopra.eshop.controller")
+@ComponentScan({"ajc.sopra.eshop.controller","ajc.sopra.eshop.restcontroller"})
 @Import(JpaConfig.class)
 public class WebConfig {
 	

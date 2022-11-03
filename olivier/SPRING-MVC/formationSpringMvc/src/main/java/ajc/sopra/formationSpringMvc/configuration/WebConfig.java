@@ -13,7 +13,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 //activation des annotations de spring-mvc
 @EnableWebMvc
 //scan des packages contenant des beans(controller spring)
-@ComponentScan("ajc.sopra.formationSpringMvc.controller")
+@ComponentScan({"ajc.sopra.formationSpringMvc.controller","ajc.sopra.formationSpringMvc.restcontroller"})
 public class WebConfig implements WebMvcConfigurer{
 
 	//definition d'url accessible directement

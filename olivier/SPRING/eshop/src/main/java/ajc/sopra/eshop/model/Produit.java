@@ -16,22 +16,28 @@ import javax.persistence.Table;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "product")
 public class Produit {
-
+	@JsonView(JsonViews.Common.class)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@JsonView(JsonViews.Common.class)
 	@NotBlank
 	@Column(name = "label", length = 30, nullable = false)
 	private String libelle;
+	@JsonView(JsonViews.Common.class)
 	@DecimalMin("0.5")
 	@Column(name = "price", columnDefinition = "NUMERIC(6,2)", nullable = false)
 	private double prix;
 
 	@ManyToOne
 	@JoinColumn(name = "vendeur")
+	@JsonView(JsonViews.ProduitWithFournisseur.class)
 	private Fournisseur fournisseur;
 
 	@OneToMany(mappedBy = "produit")

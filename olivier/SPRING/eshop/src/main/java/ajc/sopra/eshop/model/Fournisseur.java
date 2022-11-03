@@ -7,13 +7,18 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @DiscriminatorValue("supplier")
 public class Fournisseur extends Personne {
 
+	@JsonView({JsonViews.Common.class})
 	@Column(name = "company", length = 25)
 	private String societe;
 
+	@JsonView(JsonViews.FournisseurWithProduit.class)
 	@OneToMany(mappedBy = "fournisseur")
 	private List<Produit> produits;
 

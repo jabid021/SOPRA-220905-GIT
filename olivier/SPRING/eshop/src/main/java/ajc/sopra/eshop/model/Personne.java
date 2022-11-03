@@ -14,23 +14,27 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type_personne")
 @Table(name = "person")
 
 public abstract class Personne {
-
+	@JsonView(JsonViews.Common.class)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Integer id;
+	@JsonView(JsonViews.Common.class)
 	@NotBlank
 	@Column(name = "lastname", length = 30, nullable = false)
 	protected String nom;
+	@JsonView(JsonViews.Common.class)
 	@NotBlank(message = "mon message")
 	@Column(name = "firstname", length = 30, nullable = false)
 	protected String prenom;
-
+	@JsonView(JsonViews.Common.class)
 	@Embedded
 	protected Adresse adresse;
 
@@ -104,6 +108,5 @@ public abstract class Personne {
 		Personne other = (Personne) obj;
 		return Objects.equals(id, other.id);
 	}
-	
 
 }

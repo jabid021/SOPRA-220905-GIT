@@ -6,6 +6,15 @@ public class Societe {
 	public Societe() {
 
 	}
+	
+	
+
+	public Societe(String nom) {
+		super();
+		this.nom = nom;
+	}
+
+
 
 	public String getNom() {
 		return nom;
