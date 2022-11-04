@@ -34,7 +34,7 @@ public class FournisseurService {
 		return fournisseurRepo.findById(id).orElseThrow(IdException::new);
 	}
 
-	public void save(Fournisseur fournisseur) {
+	public Fournisseur save(Fournisseur fournisseur) {
 		if (fournisseur.getNom() == null || fournisseur.getNom().isBlank()) {
 			throw new FournisseurException();
 		}
@@ -42,7 +42,7 @@ public class FournisseurService {
 			throw new FournisseurException();
 		}
 
-		fournisseurRepo.save(fournisseur);
+		return fournisseurRepo.save(fournisseur);
 	}
 
 	public void deleteById(Integer id) {

@@ -8,12 +8,14 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @DiscriminatorValue("customer")
 public class Client extends Personne {
 
 	private Integer age;
-
+	@JsonView(JsonViews.Common.class)
 	@Column(name = "birthdate")
 	private LocalDate naissance;
 

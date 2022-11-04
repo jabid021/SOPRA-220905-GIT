@@ -26,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import ajc.sopra.eshop.model.JsonViews;
 import ajc.sopra.eshop.model.Produit;
+import ajc.sopra.eshop.repository.ProduitRepository;
 import ajc.sopra.eshop.service.FournisseurService;
 import ajc.sopra.eshop.service.ProduitService;
 
@@ -37,6 +38,7 @@ public class ProduitRestController {
 	private ProduitService produitSrv;
 	@Autowired
 	private FournisseurService fournisseurSrv;
+
 
 	// recuperation Get
 	@JsonView(JsonViews.ProduitWithFournisseur.class)

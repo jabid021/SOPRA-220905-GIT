@@ -37,7 +37,7 @@ public class Produit {
 
 	@ManyToOne
 	@JoinColumn(name = "vendeur")
-	@JsonView(JsonViews.ProduitWithFournisseur.class)
+	@JsonView({JsonViews.ProduitWithFournisseur.class,JsonViews.Achat.class})
 	private Fournisseur fournisseur;
 
 	@OneToMany(mappedBy = "produit")

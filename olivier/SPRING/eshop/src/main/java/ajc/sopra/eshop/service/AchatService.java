@@ -21,4 +21,8 @@ public class AchatService {
 	public List<Achat> saveAll(List<Achat> achats) {
 		return achatRepo.saveAll(achats);
 	}
+
+	public List<Achat> findAll() {
+		return achatRepo.findAll();
+	}
 }
