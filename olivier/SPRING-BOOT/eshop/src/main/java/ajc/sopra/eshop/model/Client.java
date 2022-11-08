@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -18,6 +19,8 @@ public class Client extends Personne {
 	@JsonView(JsonViews.Common.class)
 	@Column(name = "birthdate")
 	private LocalDate naissance;
+	@OneToOne
+	private Compte compte;
 
 	/*
 	 * @ManyToMany
