@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +7,9 @@
 <title>demo</title>
 </head>
 <body>
-<h1>bonjour ${pageContext.request.userPrincipal.name}</h1>
+	<form action="" method="post">
+		login:<input name="login"><br> mdp:<input name="mdp"><br>
+		<button type="submit">envoyer</button>
+	</form>
 </body>
 </html>
