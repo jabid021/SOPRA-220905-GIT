@@ -15,8 +15,7 @@
 </head>
 <body>
 	<div class="container">
-		<form:form method="post" action="client/save"
-			modelAttribute="client">
+		<form:form method="post" action="client/save" modelAttribute="client">
 			<div class="form-group">
 				<form:label path="id">id:</form:label>
 				<form:input path="id" cssClass="form-control" readonly="true"
@@ -25,7 +24,8 @@
 			<div class="form-group">
 				<form:label path="prenom">prenom:</form:label>
 				<form:input path="prenom" cssClass="form-control" />
-				<form:errors path="prenom" element="div" cssClass="alert alert-danger"></form:errors>
+				<form:errors path="prenom" element="div"
+					cssClass="alert alert-danger"></form:errors>
 			</div>
 			<div class="form-group">
 				<form:label path="nom">nom:</form:label>
@@ -34,7 +34,20 @@
 					<div class="alert alert-danger">*probleme</div>
 				</form:errors>
 			</div>
-			
+			<div class="form-group">
+				<form:label path="compte.email">mail:</form:label>
+				<form:input path="compte.email" cssClass="form-control" />
+				<form:errors path="compte.email" element="div"
+					cssClass="alert alert-danger">
+				</form:errors>
+			</div>
+			<div class="form-group">
+				<form:label path="compte.password">mail:</form:label>
+				<form:input path="compte.password" cssClass="form-control" />
+				<form:errors path="compte.password" element="div"
+					cssClass="alert alert-danger">
+				</form:errors>
+			</div>
 			<div class="form-group">
 				<form:label path="adresse.numero">numero:</form:label>
 				<form:input path="adresse.numero" cssClass="form-control" />

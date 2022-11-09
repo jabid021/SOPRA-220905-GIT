@@ -1,7 +1,6 @@
 package ajc.sopra.eshop.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,16 +8,16 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import ajc.sopra.eshop.model.Achat;
 import ajc.sopra.eshop.model.Client;
+import ajc.sopra.eshop.model.Compte;
 import ajc.sopra.eshop.model.Produit;
 import ajc.sopra.eshop.service.AchatService;
 import ajc.sopra.eshop.service.ClientService;
@@ -79,12 +78,12 @@ public class AchatController {
 		return "achat/validate";
 	}
 
-	@PostMapping("/save")
-	public String enregistrementAchatComplet(@ModelAttribute Client client, HttpSession session, Model model) {
+	@GetMapping("/save")
+	public String enregistrementAchatComplet(@AuthenticationPrincipal Compte compte, HttpSession session, Model model) {
 		Map<Produit, Integer> panier = (Map<Produit, Integer>) session.getAttribute("panier");
 		List<Achat> achats = new ArrayList<Achat>();
 		panier.forEach((k, v) -> {
-			achats.add(new Achat(v, client, k));
+			achats.add(new Achat(v, compte.getClient(), k));
 		});
 		achatSrv.saveAll(achats);
 		session.invalidate();

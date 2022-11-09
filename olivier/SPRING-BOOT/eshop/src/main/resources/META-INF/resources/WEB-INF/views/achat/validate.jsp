@@ -19,12 +19,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col">
-				<form:form action="achat/save" method="post" modelAttribute="client"> 
-					identifiez vous:
-					<form:select path="id" cssClass="form-control" items="${clients}"
-						itemValue="id" itemLabel="details"></form:select>
-					<button type="submit" class="btn btn-outline-primary">valider</button>
-				</form:form>
+				<a href="achat/save" class="btn btn-link">identifiez vous</a>
 			</div>
 			<div class="col">
 				nouveau client:<a href="client/inscription" class="btn btn-link">inscrivez

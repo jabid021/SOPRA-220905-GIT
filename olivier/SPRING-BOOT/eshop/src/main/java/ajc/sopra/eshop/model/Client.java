@@ -70,6 +70,14 @@ public class Client extends Personne {
 		this.achats = achats;
 	}
 
+	public Compte getCompte() {
+		return compte;
+	}
+
+	public void setCompte(Compte compte) {
+		this.compte = compte;
+	}
+
 	@Override
 	public String toString() {
 		return "Client [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", age=" + age
