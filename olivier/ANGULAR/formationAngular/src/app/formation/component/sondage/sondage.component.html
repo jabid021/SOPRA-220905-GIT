@@ -1,0 +1,13 @@
+<div *ngIf="equipePopulaire">
+  l'equipe la plus populaire:{{ equipePopulaire }} avec {{ vote }} votes
+</div>
+<app-equipe
+  nom="psg"
+  logo="assets/images/psg.png"
+  (voteEmit)="voteRecu($event)"
+>
+</app-equipe>
+<app-equipe nom="om" logo="assets/images/om.png" (voteEmit)="voteRecu($event)">
+</app-equipe>
+<app-equipe nom="ol" logo="assets/images/ol.png" (voteEmit)="voteRecu($event)">
+</app-equipe>

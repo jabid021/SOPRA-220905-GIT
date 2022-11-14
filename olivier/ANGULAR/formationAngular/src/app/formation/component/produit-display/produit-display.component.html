@@ -1,1 +1,9 @@
-<p>info du produit:{{ produit.nom }} {{ produit.prix }}</p>
+<p [ngClass]="{ rentable: this.produit!.prix! > 1000 }">
+  info du produit:{{ produit.nom }} {{ produit.prix }}
+</p>
+
+<div appImportant *ngIf="this.produit!.prix! > 1000; else etiquette">
+  prix rentable
+</div>
+
+<ng-template #etiquette> prix pas assez rentable</ng-template>
