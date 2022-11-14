@@ -1,2 +1,10 @@
-<h1 appImportant>mon titre</h1>
-<app-produit></app-produit>
+<h1>mon site angular</h1>
+<nav>
+  <a routerLink="/home" routerLinkActive="active">home</a>
+  <a [routerLink]="['/produits']" routerLinkActive="active">produits</a>
+  <a routerLink="/produits/1" routerLinkActive="active">detail produit 1</a>
+  <a [routerLink]="['/produits', 2]" routerLinkActive="active">
+    detail produit 2</a
+  >
+</nav>
+<router-outlet></router-outlet>
