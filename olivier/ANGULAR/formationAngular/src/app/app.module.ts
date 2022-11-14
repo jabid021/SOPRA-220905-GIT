@@ -1,3 +1,4 @@
+import { routes } from './routes';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -14,6 +15,11 @@ import { SondageComponent } from './formation/component/sondage/sondage.componen
 import { TabComponent } from './formation/component/tableau/tab/tab.component';
 import { LigneComponent } from './formation/component/tableau/ligne/ligne.component';
 import { ImportantDirective } from './formation/directive/important.directive';
+import { ListProduitComponent } from './formation/component/list-produit/list-produit.component';
+import { RouterModule } from '@angular/router';
+import { HomeComponent } from './formation/component/home/home.component';
+import { NotFoundComponent } from './formation/component/not-found/not-found.component';
+import { DetailProduitComponent } from './formation/component/detail-produit/detail-produit.component';
 
 @NgModule({
   declarations: [
@@ -29,8 +35,12 @@ import { ImportantDirective } from './formation/directive/important.directive';
     TabComponent,
     LigneComponent,
     ImportantDirective,
+    ListProduitComponent,
+    HomeComponent,
+    NotFoundComponent,
+    DetailProduitComponent,
   ],
-  imports: [BrowserModule, FormsModule],
+  imports: [BrowserModule, FormsModule, RouterModule.forRoot(routes)],
   providers: [],
   bootstrap: [AppComponent],
 })
