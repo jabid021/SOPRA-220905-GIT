@@ -7,17 +7,13 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./produit.component.css'],
 })
 export class ProduitComponent implements OnInit {
-  nom: string = '';
-  prix: number = 0;
   produit!: Produit;
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  click() {
-    if (this.nom && this.prix != 0) {
-      this.produit = new Produit(this.nom, this.prix);
-    }
+  produitRecu(produit: Produit) {
+    this.produit = produit;
   }
 }

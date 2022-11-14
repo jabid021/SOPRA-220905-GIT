@@ -1,7 +1,2 @@
-<div>
-  <div>nom:<input [(ngModel)]="nom" /></div>
-  <div>prix:<input [(ngModel)]="prix" /></div>
-  <button (click)="click()">envoyer</button>
-</div>
-
-<app-produit-display [produit]="produit"></app-produit-display>
+<app-produit-edit (produitReady)="produitRecu($event)"></app-produit-edit>
+<app-produit-display *ngIf="produit" [produit]="produit"></app-produit-display>

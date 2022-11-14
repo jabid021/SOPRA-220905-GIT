@@ -8,6 +8,7 @@ import { BonjourV2Component } from './formation/component/bonjour-v2/bonjour-v2.
 import { ProduitComponent } from './formation/component/produit/produit.component';
 import { FormsModule } from '@angular/forms';
 import { ProduitDisplayComponent } from './formation/component/produit-display/produit-display.component';
+import { ProduitEditComponent } from './formation/component/produit-edit/produit-edit.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ProduitDisplayComponent } from './formation/component/produit-display/p
     BonjourV2Component,
     ProduitComponent,
     ProduitDisplayComponent,
+    ProduitEditComponent,
   ],
   imports: [BrowserModule, FormsModule],
   providers: [],
