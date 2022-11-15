@@ -10,6 +10,8 @@ import { RouterModule } from '@angular/router';
 import { routes } from './routes';
 import { MenuComponent } from './eshop/component/menu/menu.component';
 import { ProduitEditComponent } from './eshop/component/produit/produit-edit/produit-edit.component';
+import { FournisseurListComponent } from './eshop/component/fournisseur/fournisseur-list/fournisseur-list.component';
+import { FournisseurEditComponent } from './eshop/component/fournisseur/fournisseur-edit/fournisseur-edit.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { ProduitEditComponent } from './eshop/component/produit/produit-edit/pro
     MenuComponent,
     ProduitListComponent,
     ProduitEditComponent,
+    FournisseurListComponent,
+    FournisseurEditComponent,
   ],
   imports: [
     BrowserModule,

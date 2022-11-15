@@ -1,4 +1,11 @@
+import { Fournisseur } from './fournisseur';
 export class Produit {
+  public get fournisseur(): Fournisseur | undefined {
+    return this._fournisseur;
+  }
+  public set fournisseur(value: Fournisseur | undefined) {
+    this._fournisseur = value;
+  }
   public get prix(): number | undefined {
     return this._prix;
   }
@@ -20,6 +27,7 @@ export class Produit {
   constructor(
     private _id?: number,
     private _libelle?: string,
-    private _prix?: number
+    private _prix?: number,
+    private _fournisseur?: Fournisseur
   ) {}
 }

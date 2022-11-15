@@ -1,0 +1,37 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>id:</th>
+      <th>prenom:</th>
+      <th>nom:</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let fournisseur of fournisseursObservable | async">
+      <td>{{ fournisseur.id }}</td>
+      <td>{{ fournisseur.prenom }}</td>
+      <td>{{ fournisseur.nom }}</td>
+      <td>
+        <a
+          routerLink="/fournisseur/edit/{{ fournisseur.id }}"
+          routerLinkActive="active"
+          class="btn btn-outline-primary"
+          >editer</a
+        >
+      </td>
+      <td>
+        <button
+          class="btn btn-outline-danger"
+          (click)="delete(fournisseur.id!)"
+        >
+          supprimer
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<a routerLink="/fournisseur/edit" routerLinkActive="active" class="btn btn-link"
+  >nouveau fournisseur</a
+>
