@@ -6,10 +6,13 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -32,7 +35,10 @@ import ajc.sopra.eshop.service.ProduitService;
 
 @RestController
 @RequestMapping("/api/produit")
+@CrossOrigin(origins = {"*"})
 public class ProduitRestController {
+	
+	private static final Logger LOGGER=LoggerFactory.getLogger(ProduitRestController.class);
 
 	@Autowired
 	private ProduitService produitSrv;
@@ -58,7 +64,9 @@ public class ProduitRestController {
 	@PostMapping("")
 	@JsonView(JsonViews.ProduitWithFournisseur.class)
 	public Produit create(@Valid @RequestBody Produit produit, BindingResult br) {
+		LOGGER.debug("debut create");
 		if (br.hasErrors()) {
+			LOGGER.debug(br.toString());
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "données incorrectes");
 		}
 		if (produit.getFournisseur() != null && produit.getFournisseur().getId() != null) {
@@ -66,6 +74,7 @@ public class ProduitRestController {
 		}
 //		produit = produitSrv.create(produit);
 //		return produitSrv.findById(produit.getId());
+		LOGGER.debug("before create");
 		return produitSrv.create(produit);
 	}
 
