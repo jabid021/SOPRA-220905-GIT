@@ -37,9 +37,14 @@ public class ClientRestController {
 
 	@Autowired
 	private ClientService clientSrv;
+	
+	@GetMapping("/check/email/{email}")
+	public boolean checkEmailExists(@PathVariable String email) {
+		return clientSrv.checkEmailExists(email);
+	}
 
 	@PostMapping("/inscription")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.ClientWithCompte.class)
 	public Client inscription(@Valid @RequestBody Client client, BindingResult br) {
 		if (br.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
@@ -47,13 +52,13 @@ public class ClientRestController {
 		return clientSrv.save(client);
 	}
 
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.ClientWithCompte.class)
 	@GetMapping("/{id}")
 	public Client findById(@PathVariable Integer id) {
 		return clientSrv.findById(id);
 	}
 
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.ClientWithCompte.class)
 	@GetMapping("")
 	public List<Client> findAll() {
 		return clientSrv.findAll();

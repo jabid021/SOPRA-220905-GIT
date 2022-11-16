@@ -18,15 +18,19 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "compte")
 public class Compte implements UserDetails{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(JsonViews.Common.class)
 	private Long id;
 	@NotBlank
 	@Email
 	@Column(name = "email", length = 255, nullable = false, unique = true)
+	@JsonView(JsonViews.Common.class)
 	private String email;
 	@Column(name = "password", length = 255, nullable = false)
 	private String password;

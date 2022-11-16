@@ -1,65 +1,113 @@
 <div>
-  <div class="form-group">
-    <label for="id">id:</label>
-    <input class="form-control" id="id" [(ngModel)]="fournisseur.id" readonly />
-  </div>
-  <div class="form-group">
-    <label for="prenom">prenom:</label>
-    <input class="form-control" id="prenom" [(ngModel)]="fournisseur.prenom" />
-  </div>
-  <div class="form-group">
-    <label for="nom">nom:</label>
-    <input class="form-control" id="nom" [(ngModel)]="fournisseur.nom" />
-  </div>
-  <div class="form-group">
-    <label for="societe">societe:</label>
-    <input
-      class="form-control"
-      id="societe"
-      [(ngModel)]="fournisseur.societe"
-    />
-  </div>
-  <div class="form-group">
-    <label for="adresse.numero">numero:</label>
-    <input
-      class="form-control"
-      id="adresse.numero"
-      [(ngModel)]="fournisseur.adresse!.numero"
-    />
-  </div>
-  <div class="form-group">
-    <label for="adresse.voie">voie:</label>
-    <input
-      class="form-control"
-      id="adresse.voie"
-      [(ngModel)]="fournisseur.adresse!.voie"
-    />
-  </div>
-  <div class="form-group">
-    <label for="adresse.cp">code postal:</label>
-    <input
-      class="form-control"
-      id="adresse.cp"
-      [(ngModel)]="fournisseur.adresse!.cp"
-    />
-  </div>
-  <div class="form-group">
-    <label for="adresse.ville">code ville:</label>
-    <input
-      class="form-control"
-      id="adresse.ville"
-      [(ngModel)]="fournisseur.adresse!.ville"
-    />
-  </div>
-  <div class="form-group">
-    <button class="btn btn-outline-primary" (click)="save()">
-      enregistrer
-    </button>
-    <a
-      routerLink="/fournisseur"
-      routerLinkActive="active"
-      class="btn btn-outline-warning"
-      >annuler</a
-    >
-  </div>
+  <form (ngSubmit)="save()" #form="ngForm">
+    <div class="form-group">
+      <label for="id">id:</label>
+      <input
+        class="form-control"
+        id="id"
+        name="id"
+        [(ngModel)]="fournisseur.id"
+        readonly
+      />
+    </div>
+    <div class="form-group">
+      <label for="prenom">prenom:</label>
+      <input
+        class="form-control"
+        id="prenom"
+        name="prenom"
+        [(ngModel)]="fournisseur.prenom"
+        #prenomCtrl="ngModel"
+        required
+        minlength="2"
+      />
+      <div
+        *ngIf="prenomCtrl.dirty && prenomCtrl.invalid"
+        class="alert alert-danger"
+      >
+        <ng-container *ngIf="prenomCtrl.hasError('required')">
+          prenom obligatoire
+        </ng-container>
+        <ng-container *ngIf="prenomCtrl.hasError('minlength')">
+          2 caracteres minimum
+        </ng-container>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="nom">nom:</label>
+      <input
+        class="form-control"
+        id="nom"
+        name="nom"
+        [(ngModel)]="fournisseur.nom"
+        #nomCtrl="ngModel"
+        required
+      />
+      <div *ngIf="nomCtrl.dirty && nomCtrl.invalid" class="alert alert-danger">
+        nom obligatoire
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="societe">societe:</label>
+      <input
+        class="form-control"
+        id="societe"
+        name="societe"
+        [(ngModel)]="fournisseur.societe"
+        #societeCtrl="ngModel"
+        required
+      />
+      <div
+        *ngIf="societeCtrl.dirty && societeCtrl.invalid"
+        class="alert alert-danger"
+      >
+        societe obligatoire
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="adresse.numero">numero:</label>
+      <input
+        class="form-control"
+        id="adresse.numero"
+        name="adresse.numero"
+        [(ngModel)]="fournisseur.adresse!.numero"
+      />
+    </div>
+    <div class="form-group">
+      <label for="adresse.voie">voie:</label>
+      <input
+        class="form-control"
+        id="adresse.voie"
+        name="adresse.voie"
+        [(ngModel)]="fournisseur.adresse!.voie"
+      />
+    </div>
+    <div class="form-group">
+      <label for="adresse.cp">code postal:</label>
+      <input
+        class="form-control"
+        id="adresse.cp"
+        name="adresse.cp"
+        [(ngModel)]="fournisseur.adresse!.cp"
+      />
+    </div>
+    <div class="form-group">
+      <label for="adresse.ville">code ville:</label>
+      <input
+        class="form-control"
+        id="adresse.ville"
+        name="adresse.ville"
+        [(ngModel)]="fournisseur.adresse!.ville"
+      />
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-outline-primary">enregistrer</button>
+      <a
+        routerLink="/fournisseur"
+        routerLinkActive="active"
+        class="btn btn-outline-warning"
+        >annuler</a
+      >
+    </div>
+  </form>
 </div>

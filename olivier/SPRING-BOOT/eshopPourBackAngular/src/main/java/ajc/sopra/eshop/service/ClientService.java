@@ -35,4 +35,8 @@ public class ClientService {
 		compteRepo.save(compte);
 		return clientRepo.save(client);
 	}
+	
+	public boolean checkEmailExists(String email) {
+		return compteRepo.findByEmail(email).isPresent();
+	}
 }

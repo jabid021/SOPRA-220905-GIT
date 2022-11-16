@@ -20,6 +20,7 @@ public class Client extends Personne {
 	@Column(name = "birthdate")
 	private LocalDate naissance;
 	@OneToOne
+	@JsonView(JsonViews.ClientWithCompte.class)
 	private Compte compte;
 
 	/*

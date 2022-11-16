@@ -17,4 +17,8 @@ public class JsonViews {
 	public static class Achat extends Common{
 		
 	}
+	
+	public static class ClientWithCompte extends Common{
+		
+	}
 }

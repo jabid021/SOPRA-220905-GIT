@@ -1,3 +1,4 @@
+import { InscriptionComponent } from './eshop/component/client/inscription/inscription.component';
 import { FournisseurEditComponent } from './eshop/component/fournisseur/fournisseur-edit/fournisseur-edit.component';
 import { FournisseurListComponent } from './eshop/component/fournisseur/fournisseur-list/fournisseur-list.component';
 import { ProduitEditComponent } from './eshop/component/produit/produit-edit/produit-edit.component';
@@ -13,5 +14,6 @@ export const routes: Routes = [
   { path: 'fournisseur', component: FournisseurListComponent },
   { path: 'fournisseur/edit', component: FournisseurEditComponent },
   { path: 'fournisseur/edit/:id', component: FournisseurEditComponent },
+  { path: 'inscription', component: InscriptionComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
