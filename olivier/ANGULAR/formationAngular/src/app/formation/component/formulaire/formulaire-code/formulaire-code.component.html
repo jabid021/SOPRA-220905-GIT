@@ -1,0 +1,44 @@
+<div>
+  <form (ngSubmit)="submit()" [formGroup]="form">
+    <input formControlName="inputCtrl" />
+    <span
+      *ngIf="form.get('inputCtrl')?.dirty && form.get('inputCtrl')?.invalid"
+    >
+      <ng-container *ngIf="form.get('inputCtrl')?.hasError('required')"
+        >*obligatoire</ng-container
+      >
+      <ng-container *ngIf="form.get('inputCtrl')?.hasError('minlength')"
+        >*3 caracteres minimum</ng-container
+      >
+      <ng-container *ngIf="form.get('inputCtrl')?.hasError('toto')"
+        >*toto interdit</ng-container
+      >
+      <ng-container *ngIf="form.get('inputCtrl')?.hasError('chaineInterdite')"
+        >*chaine interdite</ng-container
+      >
+    </span>
+    <br />
+    <input formControlName="autreCtrl" />
+    <span *ngIf="form.get('autreCtrl')?.dirty && form.get('autreCtrl')?.invalid"
+      >ce numero de produit n'existe pas</span
+    >
+    <br />
+    <ng-container formGroupName="groupeDix">
+      <input formControlName="nombre1Ctrl" />
+      <span
+        *ngIf="
+          form.get('groupeDix.nombre1Ctrl')?.dirty &&
+          form.get('groupeDix.nombre1Ctrl')?.invalid
+        "
+        >*obligatoire</span
+      >
+      <br />
+      <input formControlName="nombre2Ctrl" /><br />
+      <span
+        *ngIf="form.get('groupeDix')?.dirty && form.get('groupeDix')?.invalid"
+        >la somme des 2 zones doit etre egale à 10</span
+      >
+    </ng-container>
+    <button type="submit" [disabled]="form.invalid">ok</button>
+  </form>
+</div>

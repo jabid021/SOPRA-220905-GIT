@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { routes } from './routes';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -7,7 +8,7 @@ import { DemoOlivierComponent } from './formation/component/demo-olivier/demo-ol
 import { BonjourComponent } from './formation/component/bonjour/bonjour.component';
 import { BonjourV2Component } from './formation/component/bonjour-v2/bonjour-v2.component';
 import { ProduitComponent } from './formation/component/produit/produit.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProduitDisplayComponent } from './formation/component/produit-display/produit-display.component';
 import { ProduitEditComponent } from './formation/component/produit-edit/produit-edit.component';
 import { EquipeComponent } from './formation/component/equipe/equipe.component';
@@ -20,6 +21,8 @@ import { RouterModule } from '@angular/router';
 import { HomeComponent } from './formation/component/home/home.component';
 import { NotFoundComponent } from './formation/component/not-found/not-found.component';
 import { DetailProduitComponent } from './formation/component/detail-produit/detail-produit.component';
+import { FormulaireTemplateComponent } from './formation/component/formulaire/formulaire-template/formulaire-template.component';
+import { FormulaireCodeComponent } from './formation/component/formulaire/formulaire-code/formulaire-code.component';
 
 @NgModule({
   declarations: [
@@ -39,8 +42,16 @@ import { DetailProduitComponent } from './formation/component/detail-produit/det
     HomeComponent,
     NotFoundComponent,
     DetailProduitComponent,
+    FormulaireTemplateComponent,
+    FormulaireCodeComponent,
   ],
-  imports: [BrowserModule, FormsModule, RouterModule.forRoot(routes)],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    RouterModule.forRoot(routes),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

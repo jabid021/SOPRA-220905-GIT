@@ -1,0 +1,7 @@
+<div>
+  <form (ngSubmit)="submit(form)" #form="ngForm">
+    <input name="input" [(ngModel)]="input" #inputCtrl="ngModel" required />
+    <span *ngIf="inputCtrl.dirty && inputCtrl.invalid">*obligatoire</span>
+    <button type="submit" [disabled]="form.invalid">ok</button>
+  </form>
+</div>

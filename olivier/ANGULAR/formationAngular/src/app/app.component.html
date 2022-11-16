@@ -1,6 +1,12 @@
 <h1>mon site angular</h1>
 <nav>
   <a routerLink="/home" routerLinkActive="active">home</a>
+  <a routerLink="/form/template" routerLinkActive="active"
+    >formulaire pilote par le template</a
+  >
+  <a routerLink="/form/code" routerLinkActive="active"
+    >formulaire pilote par le code</a
+  >
   <a [routerLink]="['/produits']" routerLinkActive="active">produits</a>
   <a routerLink="/produits/1" routerLinkActive="active">detail produit 1</a>
   <a [routerLink]="['/produits', 2]" routerLinkActive="active">

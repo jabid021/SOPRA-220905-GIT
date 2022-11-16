@@ -45,6 +45,11 @@ public class ProduitRestController {
 	@Autowired
 	private FournisseurService fournisseurSrv;
 
+	
+	@GetMapping("/{id}/exists")
+	public boolean exists(@PathVariable Integer id) {
+		return produitSrv.exists(id);
+	}
 
 	// recuperation Get
 	@JsonView(JsonViews.ProduitWithFournisseur.class)

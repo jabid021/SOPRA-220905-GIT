@@ -63,4 +63,8 @@ public class ProduitService {
 	public void deleteId(Integer id) {
 		produitRepo.deleteById(id);
 	}
+	
+	public boolean exists(Integer id) {
+		return produitRepo.existsById(id);
+	}
 }
