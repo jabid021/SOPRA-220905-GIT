@@ -60,10 +60,7 @@
       <label for="email">email:</label>
       <input type="email" formControlName="email" class="form-control" />
       <div
-        *ngIf="
-          form.get('groupeInfo.email')?.dirty &&
-          form.get('groupeInfo.email')?.invalid
-        "
+        *ngIf="form.get('email')?.dirty && form.get('email')?.invalid"
         class="alert alert-danger"
       >
         probleme email

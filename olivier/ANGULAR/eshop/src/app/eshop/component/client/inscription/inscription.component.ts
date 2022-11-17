@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ClientService } from './../../../service/client.service';
 import { map, Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
@@ -18,7 +19,7 @@ import {
 export class InscriptionComponent implements OnInit {
   form!: FormGroup;
 
-  constructor(private clientService: ClientService) {}
+  constructor(private clientService: ClientService, private router: Router) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -81,12 +82,6 @@ export class InscriptionComponent implements OnInit {
 
   contientPrenomOuNom(control: AbstractControl): ValidationErrors | null {
     let password = control.get('groupePassword.password');
-    console.log(password?.value);
-    console.log(
-      password?.value
-        .toString()
-        .includes(control.get('prenom')?.value.toString())
-    );
     return password?.value
       .toString()
       .includes(control.get('prenom')?.value.toString()) ||
@@ -96,6 +91,32 @@ export class InscriptionComponent implements OnInit {
   }
 
   save() {
-    console.log(this.form);
+    let client = {
+      prenom: this.form.get('groupeInfo.prenom')?.value,
+      nom: this.form.get('groupeInfo.nom')?.value,
+      naissance: this.form.get('naissance')?.value,
+      compte: {
+        email: this.form.get('email')?.value,
+        password: this.form.get('groupeInfo.groupePassword.password')?.value,
+      },
+    };
+    if (
+      this.form.get('numero')?.value ||
+      this.form.get('voie')?.value ||
+      this.form.get('cp')?.value ||
+      this.form.get('ville')?.value
+    ) {
+      Object.assign(client, {
+        adresse: {
+          numero: this.form.get('numero')?.value,
+          voie: this.form.get('voie')?.value,
+          cp: this.form.get('cp')?.value,
+          ville: this.form.get('ville')?.value,
+        },
+      });
+    }
+    this.clientService.inscription(client).subscribe((data) => {
+      this.router.navigateByUrl('/home');
+    });
   }
 }
