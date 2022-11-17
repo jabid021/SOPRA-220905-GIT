@@ -21,6 +21,7 @@ public class SecurityConfig {
 			.and()
 			.authorizeRequests()
 				.antMatchers(HttpMethod.OPTIONS).permitAll()
+				.antMatchers(HttpMethod.GET,"/api/produit").permitAll()
 				.antMatchers(HttpMethod.GET,"/api/auth").authenticated()
 				.antMatchers(HttpMethod.POST ,"/api/client/inscription").anonymous()
 				.antMatchers(HttpMethod.PATCH,"/api/client/**").authenticated()

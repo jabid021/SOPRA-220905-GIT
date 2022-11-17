@@ -1,0 +1,31 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>libelle:</th>
+      <th>prix:</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of produits">
+      <td>{{ p.libelle }}</td>
+      <td>{{ p.prix }}</td>
+      <td>
+        <button (click)="ajouterPanier(p.id!)" class="btn btn-link">
+          ajouter au panier
+        </button>
+      </td>
+      <td>{{ getQuantite(p.id!) }}</td>
+      <td>
+        <button (click)="retirerPanier(p.id!)" class="btn btn-link">
+          retirer du panier
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<a routerLink="/achat/validation" routerLinkActive="active" class="btn btn-link"
+  >valider panier</a
+>

@@ -12,19 +12,50 @@
         >
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/produit" routerLinkActive="active"
+        <a class="nav-link" routerLink="/achat" routerLinkActive="active"
+          >notre catalogue</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          *ngIf="admin"
+          class="nav-link"
+          routerLink="/produit"
+          routerLinkActive="active"
           >produit</a
         >
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/fournisseur" routerLinkActive="active"
+        <a
+          *ngIf="admin"
+          class="nav-link"
+          routerLink="/fournisseur"
+          routerLinkActive="active"
           >fournisseur</a
         >
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/inscription" routerLinkActive="active"
+        <a
+          *ngIf="anonymous"
+          class="nav-link"
+          routerLink="/inscription"
+          routerLinkActive="active"
           >inscription</a
         >
+      </li>
+      <li class="nav-item">
+        <a
+          *ngIf="anonymous"
+          class="nav-link"
+          routerLink="/login"
+          routerLinkActive="active"
+          >connexion</a
+        >
+      </li>
+      <li *ngIf="authenticated" class="nav-item">
+        <button class="btn btn-link nav-link" (click)="logoff()">
+          deconnexion
+        </button>
       </li>
     </ul>
   </div>
