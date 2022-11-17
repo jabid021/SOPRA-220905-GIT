@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,6 +36,7 @@ public class Compte implements UserDetails{
 	@Column(name = "password", length = 255, nullable = false)
 	private String password;
 	@OneToOne(mappedBy = "compte")
+	@JsonView(JsonViews.CompteWithClient.class)
 	private Client client;
 
 	public Compte() {
@@ -103,6 +105,11 @@ public class Compte implements UserDetails{
 		return Objects.equals(id, other.id);
 	}
 
+	@JsonView(JsonViews.CompteWithClient.class)
+	public String getRole() {
+		return getAuthorities().stream().findFirst().get().toString();
+	}
+	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		String role=null;

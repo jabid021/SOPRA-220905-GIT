@@ -1,4 +1,5 @@
-import { HttpClientModule } from '@angular/common/http';
+import { AuthenticationInterceptor } from './formation/interceptor/authentication.interceptor';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { routes } from './routes';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -23,6 +24,8 @@ import { NotFoundComponent } from './formation/component/not-found/not-found.com
 import { DetailProduitComponent } from './formation/component/detail-produit/detail-produit.component';
 import { FormulaireTemplateComponent } from './formation/component/formulaire/formulaire-template/formulaire-template.component';
 import { FormulaireCodeComponent } from './formation/component/formulaire/formulaire-code/formulaire-code.component';
+import { ListProduitSecComponent } from './formation/component/demo-securite/list-produit-sec/list-produit-sec.component';
+import { LoginComponent } from './formation/component/login/login.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +47,8 @@ import { FormulaireCodeComponent } from './formation/component/formulaire/formul
     DetailProduitComponent,
     FormulaireTemplateComponent,
     FormulaireCodeComponent,
+    ListProduitSecComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +57,13 @@ import { FormulaireCodeComponent } from './formation/component/formulaire/formul
     HttpClientModule,
     RouterModule.forRoot(routes),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthenticationInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -21,4 +21,8 @@ public class JsonViews {
 	public static class ClientWithCompte extends Common{
 		
 	}
+	
+	public static class CompteWithClient extends Common{
+		
+	}
 }

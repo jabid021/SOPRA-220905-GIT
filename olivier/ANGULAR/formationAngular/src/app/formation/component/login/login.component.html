@@ -1,0 +1,6 @@
+<div *ngIf="showError">probleme</div>
+<form (ngSubmit)="send()" #form="ngForm">
+  login:<input name="login" [(ngModel)]="login" required /><br />
+  password:<input name="password" [(ngModel)]="password" required /><br />
+  <button type="submit" [disabled]="form.invalid">envoyer</button>
+</form>
